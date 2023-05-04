@@ -117,10 +117,11 @@ const Login = (props) => {
             <div className="form-group">
               <div className="alert alert-danger" role="alert">
                 {/*{message}*/}
-                {successful &&
+                {successful ?
                     <>
                     {'Đăng Nhập Thành công , giờ hay chuyển qua tab chấm điểm, chấm điểm theo từng tiêu chí và lưu lại'}
                     </>
+                    : 'Nhập thông tin tài khoản chưa đúng, vui lòng nhập lại '
                 }
               </div>
             </div>
