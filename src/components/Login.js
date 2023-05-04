@@ -72,11 +72,11 @@ const Login = (props) => {
     <div className="col-md-12">
       <div className="card card-container">
         <img
-          src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
+          src="/giphy.gif"
           alt="profile-img"
           className="profile-img-card"
         />
-
+        <h3 className={'text-center'}>Đăng Nhập</h3>
         <Form onSubmit={handleLogin} ref={form}>
           <div className="form-group">
             <label htmlFor="inGame">inGame</label>

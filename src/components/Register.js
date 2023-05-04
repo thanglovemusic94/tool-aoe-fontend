@@ -85,11 +85,11 @@ const Register = () => {
     <div className="col-md-12">
       <div className="card card-container">
         <img
-          src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
+          src="/age-of-empire-de-che-24-12-2020-3.png"
           alt="profile-img"
           className="profile-img-card"
         />
-
+        <h3 className={'text-center'}>Đăng Ký</h3>
         <Form onSubmit={handleRegister} ref={form}>
           {!successful && (
             <div>
