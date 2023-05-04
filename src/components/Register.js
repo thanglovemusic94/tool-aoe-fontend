@@ -127,10 +127,16 @@ const Register = () => {
             <div className="form-group">
               <div className={ successful ? "alert alert-success" : "alert alert-danger" } role="alert">
                 {/*{message}*/}
-                {'Đăng kí thành công vui lòng đăng nhập lại để chấm điểm, nhấn nút phía dưới'}
-                <Link  to={"/login"} className="nav-link btn-sm btn-success d-inline-block mt-2">
-                  Đăng Nhập
-                </Link>
+                {
+                  successful &&
+                    <>
+                      {'Đăng kí thành công vui lòng đăng nhập lại để chấm điểm, nhấn nút phía dưới'}
+                      <Link  to={"/login"} className="nav-link btn-sm btn-success d-inline-block mt-2">
+                        Đăng Nhập
+                      </Link>
+                    </>
+                }
+
               </div>
             </div>
           )}

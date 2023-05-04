@@ -27,7 +27,7 @@ const Login = (props) => {
   const [inGame, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
-
+  const [successful, setSuccessful] = useState(false);
   const { isLoggedIn } = useSelector(state => state.auth);
   const { message } = useSelector(state => state.message);
 
@@ -53,6 +53,7 @@ const Login = (props) => {
     if (checkBtn.current.context._errors.length === 0) {
       dispatch(login(inGame, password))
         .then(() => {
+          setSuccessful(true);
           navigate("/profile");
           window.location.reload();
         })
@@ -60,6 +61,7 @@ const Login = (props) => {
           setLoading(false);
         });
     } else {
+      setSuccessful(false);
       setLoading(false);
     }
   };
@@ -115,7 +117,11 @@ const Login = (props) => {
             <div className="form-group">
               <div className="alert alert-danger" role="alert">
                 {/*{message}*/}
-                {'Đăng Nhập Thành công , giờ hay chuyển qua tab chấm điểm, chấm điểm theo từng tiêu chí và lưu lại'}
+                {successful &&
+                    <>
+                    {'Đăng Nhập Thành công , giờ hay chuyển qua tab chấm điểm, chấm điểm theo từng tiêu chí và lưu lại'}
+                    </>
+                }
               </div>
             </div>
           )}
