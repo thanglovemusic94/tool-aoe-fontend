@@ -1,8 +1,8 @@
 import axios from "axios";
 import authHeader from "./auth-header";
 
-const API_URL = "http://localhost:8080/api/auth/review";
-const API_URL2 = "http://localhost:8080/api/home/all";
+const API_URL = "http://aoerank.ap-southeast-1.elasticbeanstalk.com/api/auth/review";
+const API_URL2 = "http://aoerank.ap-southeast-1.elasticbeanstalk.com/api/home/all";
 
 const getAll = () => {
   return axios.get(API_URL2)
