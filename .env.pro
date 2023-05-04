@@ -1,0 +1,1 @@
+URL_API=http://aoerank.ap-southeast-1.elasticbeanstalk.com
