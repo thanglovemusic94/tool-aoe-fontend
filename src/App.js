@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useCallback } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Routes, Route, Link, useLocation } from "react-router-dom";
+import React, {useCallback, useEffect, useState} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {Link, Route, Routes, useLocation, useNavigate} from "react-router-dom";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
@@ -9,24 +9,25 @@ import Login from "./components/Login";
 import Register from "./components/Register";
 import Home from "./components/Home";
 import Profile from "./components/Profile";
-import BoardUser from "./components/BoardUser";
-import BoardModerator from "./components/BoardModerator";
-import BoardAdmin from "./components/BoardAdmin";
 
-import { logout } from "./actions/auth";
-import { clearMessage } from "./actions/message";
+import {logout} from "./actions/auth";
+import {clearMessage} from "./actions/message";
 
 // import AuthVerify from "./common/AuthVerify";
 import EventBus from "./common/EventBus";
 import ChamDiem from "./components/ChamDiem";
+import MaGT from "./components/MaGT";
+import User from "./components/User";
 
 const App = () => {
 
   const [showUserBoard, setShowUserBoard] = useState(false);
+  const [showAdminBoard, setShowAdminBoard] = useState(false);
 
   const { user: currentUser } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   console.log("user", currentUser)
+
   let location = useLocation();
 
   useEffect(() => {
@@ -68,7 +69,7 @@ const App = () => {
             </Link>
           </li>
           {
-            showUserBoard &&
+              currentUser &&
               <li className="nav-item">
                 <Link to={"/cham-diem"} className="nav-link">
                   Chấm Điểm
@@ -76,30 +77,25 @@ const App = () => {
               </li>
           }
 
+          {
+              currentUser?.roles?.indexOf('ROLE_ADMIN') != -1 &&
+             <>
+               <li className="nav-item">
+                 <Link to={"/quan-ly-magt"} className="nav-link">
+                   Quản lý mã giới thiệu
+                 </Link>
+               </li>
 
-          {/*{showModeratorBoard && (*/}
-          {/*  <li className="nav-item">*/}
-          {/*    <Link to={"/mod"} className="nav-link">*/}
-          {/*      Moderator Board*/}
-          {/*    </Link>*/}
-          {/*  </li>*/}
-          {/*)}*/}
+               <li className="nav-item">
+                 <Link to={"/quan-ly-user"} className="nav-link">
+                   Quản lý Người Dùng
+                 </Link>
+               </li>
 
-          {/*{showAdminBoard && (*/}
-          {/*  <li className="nav-item">*/}
-          {/*    <Link to={"/admin"} className="nav-link">*/}
-          {/*      Admin Board*/}
-          {/*    </Link>*/}
-          {/*  </li>*/}
-          {/*)}*/}
+             </>
 
-          {/*{currentUser && (*/}
-          {/*  <li className="nav-item">*/}
-          {/*    <Link to={"/user"} className="nav-link">*/}
-          {/*      User*/}
-          {/*    </Link>*/}
-          {/*  </li>*/}
-          {/*)}*/}
+          }
+          
         </div>
 
         {currentUser ? (
@@ -124,7 +120,7 @@ const App = () => {
             </li>
 
             <li className="nav-item">
-              <Link to={"/register"} className="nav-link">
+              <Link to={"/register"}  className="nav-link">
                 Đăng Ký
               </Link>
             </li>
@@ -132,7 +128,7 @@ const App = () => {
         )}
       </nav>
 
-      <div className="container mt-3">
+      <div className="container-fluid-sm mt-3">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/home" element={<Home />} />
@@ -140,9 +136,8 @@ const App = () => {
           <Route path="/register" element={<Register />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/cham-diem" element={<ChamDiem />} />
-          {/*<Route path="/user" element={<BoardUser />} />*/}
-          {/*<Route path="/mod" element={<BoardModerator />} />*/}
-          {/*<Route path="/admin" element={<BoardAdmin />} />*/}
+          <Route path="/quan-ly-magt" element={<MaGT />} />
+          <Route path="/quan-ly-user" element={<User />} />
         </Routes>
       </div>
 

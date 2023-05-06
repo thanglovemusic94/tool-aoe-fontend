@@ -22,9 +22,9 @@
     "validator": "^13.7.0"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start:dev": "env-cmd -f .env.dev react-scripts start",
     "start:prod": "env-cmd -f .env.pro react-scripts start",
-    "build": "react-scripts build",
+    "build": "env-cmd -f .env.dev  react-scripts build",
     "build:production": "env-cmd -f .env.pro react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

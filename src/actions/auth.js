@@ -8,9 +8,10 @@ import {
 } from "./types";
 
 import AuthService from "../services/auth.service";
+import {setMessage} from "./message";
 
-export const register = (inGame, password) => (dispatch) => {
-  return AuthService.register(inGame, password).then(
+export const register = (inGame, password, maGT) => (dispatch) => {
+  return AuthService.register(inGame, password, maGT).then(
     (response) => {
       dispatch({
         type: REGISTER_SUCCESS,
@@ -31,14 +32,16 @@ export const register = (inGame, password) => (dispatch) => {
         error.message ||
         error.toString();
 
+      dispatch(setMessage(error.response.data.message));
+
       dispatch({
         type: REGISTER_FAIL,
       });
 
-      dispatch({
-        type: SET_MESSAGE,
-        payload: message,
-      });
+      // dispatch({
+      //   type: SET_MESSAGE,
+      //   payload: message,
+      // });
 
       return Promise.reject();
     }

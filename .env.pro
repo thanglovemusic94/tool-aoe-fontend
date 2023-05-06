@@ -1,1 +1,1 @@
-URL_API=http://aoerank.ap-southeast-1.elasticbeanstalk.com
+URL_API_ENDPOINT=http://aoerank.ap-southeast-1.elasticbeanstalk.com

@@ -1,18 +1,19 @@
 import axios from "axios";
 
+const API_URL = "http://localhost:8080/api";
+const API_URL_AUTH= API_URL + "/auth";
 
-const API_URL = "http://aoerank.ap-southeast-1.elasticbeanstalk.com/api/auth/";
-
-const register = (inGame, password) => {
-  return axios.post(API_URL + "signup", {
+const register = (inGame, password, maGT) => {
+  return axios.post(API_URL+"/signup", {
     inGame,
     password,
+    maGT
   });
 };
 
 const login = (inGame, password) => {
   return axios
-    .post(API_URL + "signin", {
+    .post(API_URL + "/signin", {
       inGame,
       password,
     })

@@ -65,15 +65,17 @@ const ThaoTacTay = ({type}) => {
                             <Col span={3}>
                                 <b>{item.inGame}</b>
                             </Col>
-                            <Col span={6}>
+                            <Col span={7}>
                                 <Slider
+                                    railStyle={{color: "red", borderColor: "blue"}}
+                                    dots={true}
                                     min={1}
                                     max={10}
                                     onChange={(value) => onChange(value, index)}
                                     value={item.point}
                                 />
                             </Col>
-                            <Col span={3}>
+                            <Col span={2}>
                                 <InputNumber
                                     min={1}
                                     max={10}

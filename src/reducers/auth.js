@@ -6,12 +6,14 @@ import {
   LOGOUT,
 } from "../actions/types";
 import jwtDecode from "jwt-decode";
+import {LocalStorageManager} from "../common/LocalStorageManager";
 
 
-const user = localStorage.getItem("token") ? jwtDecode(localStorage.getItem("token")) : null;
+const user = LocalStorageManager.getToken() ? jwtDecode(localStorage.getItem("token")) : null;
+
 
 const initialState = user
-  ? { isLoggedIn: true, user }
+  ? { isLoggedIn: true,  user }
   : { isLoggedIn: false, user: null };
 
 export default function (state = initialState, action) {

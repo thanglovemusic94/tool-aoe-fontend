@@ -37,7 +37,7 @@ const ChamDiem = () => {
     ];
   return (
       <>
-          <Tabs defaultActiveKey={key} items={items} onChange={onChange} centered={true} />
+          <Tabs  defaultActiveKey={key} items={items} onChange={onChange} centered={true} size={'large'} />
       </>
   )
 }

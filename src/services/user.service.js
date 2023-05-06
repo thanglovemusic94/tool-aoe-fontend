@@ -1,16 +1,30 @@
 import axios from "axios";
 import authHeader from "./auth-header";
+import {stringify} from "../util/QueryUtil";
 
-const API_URL = "http://aoerank.ap-southeast-1.elasticbeanstalk.com/api/auth/review";
-const API_URL2= "http://aoerank.ap-southeast-1.elasticbeanstalk.com/api/home/all";
+const API_URL = "http://localhost:8080/api";
+const API_URL_AUTH= API_URL + "/auth";
 // const API_URL2= "http://aoerank.ap-southeast-1.elasticbeanstalk.com/api/auth/review/all";
 
-const getAll = () => {
-  return axios.get(API_URL2)
+const getAll = (paging) => {
+  return axios.get(API_URL+"/home", {params: paging, paramsSerializer: paging => stringify(paging)})
+}
+
+const getAllMaGT = (paging) => {
+  return axios.get(API_URL_AUTH+"/admin/magt", {
+    params: paging,
+    paramsSerializer: paging => stringify(paging),
+    headers: authHeader()
+  })
+}
+const createNewMaGT = () => {
+  return axios.post(API_URL_AUTH+"/admin/magt", null, {
+    headers: authHeader()
+  })
 }
 
 const getUserReview = (type) =>{
-  return axios.get(API_URL+ "/user", {
+  return axios.get(API_URL_AUTH+ "/user", {
     params: {
       type: type
     },
@@ -19,32 +33,16 @@ const getUserReview = (type) =>{
 }
 
 const saveReview = (body) =>{
-  return axios.post(API_URL+"/create", body, {
+  return axios.post(API_URL_AUTH+"/review", body, {
     headers: authHeader()
   });
 }
-const getPublicContent = () => {
-  return axios.get(API_URL + "all");
-};
 
-const getUserBoard = () => {
-  return axios.get(API_URL + "token", { headers: authHeader() });
-};
-
-const getModeratorBoard = () => {
-  return axios.get(API_URL + "mod", { headers: authHeader() });
-};
-
-const getAdminBoard = () => {
-  return axios.get(API_URL + "admin", { headers: authHeader() });
-};
-
+// eslint-disable-next-line import/no-anonymous-default-export
 export default {
-  getPublicContent,
-  getUserBoard,
-  getModeratorBoard,
-  getAdminBoard,
+  createNewMaGT,
+  getAllMaGT,
   getUserReview,
   saveReview,
   getAll
-};
+}

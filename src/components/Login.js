@@ -7,6 +7,7 @@ import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
 
 import { login } from "../actions/auth";
+import {setMessage} from "../actions/message";
 
 const required = (value) => {
   if (!value) {
@@ -27,7 +28,7 @@ const Login = (props) => {
   const [inGame, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
-  const [successful, setSuccessful] = useState(false);
+  const [status, setStatus] = useState(null);
   const { isLoggedIn } = useSelector(state => state.auth);
   const { message } = useSelector(state => state.message);
 
@@ -45,7 +46,7 @@ const Login = (props) => {
 
   const handleLogin = (e) => {
     e.preventDefault();
-
+  console.log(checkBtn.current.context._errors.length)
     setLoading(true);
 
     form.current.validateAll();
@@ -53,15 +54,17 @@ const Login = (props) => {
     if (checkBtn.current.context._errors.length === 0) {
       dispatch(login(inGame, password))
         .then(() => {
-          setSuccessful(true);
-          navigate("/profile");
+
+          navigate("/cham-diem");
           window.location.reload();
         })
         .catch(() => {
+          dispatch(setMessage("Lỗi, vui lòng đăng nhập lại "))
+
           setLoading(false);
         });
     } else {
-      setSuccessful(false);
+
       setLoading(false);
     }
   };
@@ -81,7 +84,7 @@ const Login = (props) => {
         <h3 className={'text-center'}>Đăng Nhập</h3>
         <Form onSubmit={handleLogin} ref={form}>
           <div className="form-group">
-            <label htmlFor="inGame">inGame</label>
+            <label htmlFor="inGame">InGame</label>
             <Input
               type="text"
               className="form-control"
@@ -93,7 +96,7 @@ const Login = (props) => {
           </div>
 
           <div className="form-group">
-            <label htmlFor="password">Password</label>
+            <label htmlFor="password">Mật Khẩu</label>
             <Input
               type="password"
               className="form-control"
@@ -113,19 +116,22 @@ const Login = (props) => {
             </button>
           </div>
 
-          {message && (
+
             <div className="form-group">
-              <div className="alert alert-danger" role="alert">
-                {/*{message}*/}
-                {successful ?
+
+
+                {message &&
                     <>
-                    {'Đăng Nhập Thành công , giờ hay chuyển qua tab chấm điểm, chấm điểm theo từng tiêu chí và lưu lại'}
+                    <div className="alert alert-danger" role="alert">
+                      {message}
+                    </div>
                     </>
-                    : 'Nhập thông tin tài khoản chưa đúng, vui lòng nhập lại '
+
+
                 }
-              </div>
+
             </div>
-          )}
+
           <CheckButton style={{ display: "none" }} ref={checkBtn} />
         </Form>
       </div>
