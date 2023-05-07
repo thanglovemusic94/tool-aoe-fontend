@@ -36,6 +36,12 @@ const Home = () => {
             render: (text) => <b>{text}</b>,
         },
         {
+            title: 'Nick Zalo',
+            dataIndex: 'nickZalo',
+            key: 'nickZalo',
+            render: (text) => <b>{text}</b>,
+        },
+        {
             title: 'Điểm Trung Bình',
             dataIndex: 'diemtrungbinh',
             key: 'diemtrungbinh',
@@ -94,7 +100,7 @@ const Home = () => {
     <div className="container">
         {
             data &&
-            <Table rowKey={obj => obj.user_review_id} columns={columns} dataSource={data?.content} pagination={{
+            <Table bordered rowKey={obj => obj.user_review_id} columns={columns} dataSource={data?.content} pagination={{
                 position: ["bottomCenter"],
                 itemRender: itemRender,
                 current: paging.page + 1,

@@ -95,7 +95,7 @@ const App = () => {
              </>
 
           }
-          
+
         </div>
 
         {currentUser ? (

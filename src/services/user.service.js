@@ -17,6 +17,21 @@ const getAllMaGT = (paging) => {
     headers: authHeader()
   })
 }
+
+const getAllUsers = (paging) => {
+  return axios.get(API_URL_AUTH+"/admin/users", {
+    params: paging,
+    paramsSerializer: paging => stringify(paging),
+    headers: authHeader()
+  })
+}
+
+const deleteUser = (in_game) => {
+  return axios.delete(API_URL_AUTH+"/admin/user/" + in_game, {
+    headers: authHeader()
+  })
+}
+
 const createNewMaGT = () => {
   return axios.post(API_URL_AUTH+"/admin/magt", null, {
     headers: authHeader()
@@ -40,6 +55,8 @@ const saveReview = (body) =>{
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {
+  deleteUser,
+  getAllUsers,
   createNewMaGT,
   getAllMaGT,
   getUserReview,

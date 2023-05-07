@@ -1,52 +1,86 @@
-import {Button, Table, Tag} from "antd";
+import {Button, Popconfirm, Space, Table, Tag} from "antd";
 import React, {useEffect, useState} from "react";
 import {Link} from "react-router-dom";
 import UserService from "../services/user.service";
 import LoadingIcon from "antd/es/button/LoadingIcon";
+import {DeleteOutlined} from "@ant-design/icons";
+import {useDispatch, useSelector} from "react-redux";
+import {clearMessage, setMessage} from "../actions/message";
 
 const User = () => {
     const columns = [
         {
-            title: 'Mã giới thiệu',
-            dataIndex: 'code',
-            key: 'code',
+            title: 'Họ và tên',
+            dataIndex: 'hovaten',
+            key: 'hovaten',
+            render: (text) => <b>{text}</b>
+        },
+
+        {
+            title: 'Tên In Game',
+            dataIndex: 'inGame',
+            key: 'inGame',
             render: (text) => <b>{text}</b>
         },
         {
-            title: 'Hiệu Lực',
-            dataIndex: 'status',
-            key: 'status',
-            render: (status) => {
-                if (status === 'HET_HIEU_LUC'){
-                    return <Tag color={'red'}> hết hiệu lực </Tag>
-                }else {
-                    return <Tag color={'green-inverse'}> còn hiệu lực </Tag>
-                }
-            }
+            title: 'Nick Zalo',
+            dataIndex: 'nickZalo',
+            key: 'nickZalo',
+            render: (text) => <b>{text}</b>
         },
         {
-            title: 'Chú Thích',
-            dataIndex: 'note',
-            key: 'note',
-            render: (text) => {
-                if (text){
-                    return  <b>{text}</b>
-                }else {
-                    return  "chưa ai dùng";
-                }
-            }
+            title: 'Số điện thoại',
+            dataIndex: 'sdt',
+            key: 'sdt',
+            render: (text) => <b>{text}</b>
         },
+        {
+            title: 'Nick Facebook',
+            dataIndex: 'nickFb',
+            key: 'nickFb',
+            render: (text) => <b>{text}</b>
+        },
+        {
+            title: ' ',
+            key: '',
+            // render: (text)  => <Space size="middle">
+            //     <Button size={'small'}  type={"primary"}>Xóa</Button>
+            // </Space>
+            render: (_, record) =>
+                data?.content?.length >= 1 ? (
+                    <Popconfirm okType={"danger"}   title={() => {
+                        return `Bạn có chắc chắn muốn xóa "  ${record.inGame} ", tất cả dữ liệu liên quan " ${record.inGame} " được xóa sạch?`
+                    }}
+                                onConfirm={() => onClickDelete(record.inGame)}
+                    >
+                        <Button  size={'small'}  type={"primary"} >Xóa</Button>
+                    </Popconfirm>
+                ) : null,
+        }
+
 
     ];
+    const { message } = useSelector(state => state.message);
+    const dispatch = useDispatch();
+
+    console.log(message)
     const [data, setData] = useState(null);
     const [paging, setPaging] = useState({
         page: 0,
         size: 10,
-        sort: ['status,DESC', 'id,DESC']
+        // sort: ['status,DESC', 'id,DESC']
     });
 
-    const [loadings, setLoadings] = useState(false);
+    const onClickDelete = (in_Game) => {
 
+            UserService.deleteUser(in_Game).then(r => {
+                dispatch(setMessage(`Xóa ${in_Game} thành công`))
+                setPaging({...paging})
+                setTimeout(() => {
+                    dispatch(clearMessage())
+                }, 7000);
+            }).catch(reason => {})
+    }
 
     const itemRender = (_, type, originalElement) => {
         if (type === 'prev') {
@@ -60,21 +94,14 @@ const User = () => {
     const onChange = (page) => {
         setPaging({...paging, page: page-1})
     };
-    const onCickAddCode = () => {
-        setLoadings(true);
-        setTimeout(() => {
-            UserService.createNewMaGT().then(r => {
-                setLoadings(false);
-                setPaging({...paging})
-            }).catch(reason => {setLoadings(false);})
-        }, 6000);
-    };
+
+
     const onShowSizeChange = (current, pageSize) => {
         setPaging({...paging, page: current-1, size: pageSize});
     };
 
     useEffect(() => {
-        UserService.getAllMaGT(paging).then(
+        UserService.getAllUsers(paging).then(
             (response) => {
                 setData(response.data);
             },
@@ -90,10 +117,19 @@ const User = () => {
 
     return (
         <div className="container">
-            <div> <Button className={"btn-primary btn-sm text-white mb-3"}  loading={loadings} onClick={onCickAddCode} icon={<LoadingIcon />}>Tạo Mã Mới</Button></div>
+            {message &&
+                <div className="form-group">
+                    <div className={ "alert alert-success" } role="alert">
+                        {/*{message}*/}
+                        {
+                            message
+                        }
+                    </div>
+                </div>
+            }
             {
                 data &&
-                <Table rowKey={obj => obj.user_review_id} columns={columns} dataSource={data?.content} pagination={{
+                <Table bordered rowKey={obj => obj.id} columns={columns} dataSource={data?.content} pagination={{
                     position: ["bottomCenter"],
                     itemRender: itemRender,
                     current: paging.page + 1,

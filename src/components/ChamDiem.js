@@ -5,6 +5,9 @@ import {useState} from "react";
 const ChamDiem = () => {
 
     const [key, setkey] = useState('THAO_TAC_TAY')
+    const [dataThaoTacTay, setDataThaoTacTay] = useState({})
+    const [dataEpDoi, setDataEpDoi] = useState({})
+
     const onChange = (key) => {
         setkey(key)
     };
@@ -32,6 +35,16 @@ const ChamDiem = () => {
         {
             key: 'CHIEN_THUAT',
             label: `CHIẾN THUẬT`,
+            children: <ThaoTacTay type={key}/>,
+        },
+        {
+            key: 'DIEU_R',
+            label: `ĐIỀU R`,
+            children: <ThaoTacTay type={key} />,
+        },
+        {
+            key: 'DI_QUAN',
+            label: `ĐI QUÂN`,
             children: <ThaoTacTay type={key}/>,
         }
     ];
