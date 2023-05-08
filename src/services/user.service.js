@@ -2,7 +2,8 @@ import axios from "axios";
 import authHeader from "./auth-header";
 import {stringify} from "../util/QueryUtil";
 
-const API_URL = "http://localhost:8080/api";
+//const API_URL = "http://localhost:8080/api";
+const API_URL = "http://toolaoe.ap-southeast-1.elasticbeanstalk.com/api";
 const API_URL_AUTH= API_URL + "/auth";
 // const API_URL2= "http://aoerank.ap-southeast-1.elasticbeanstalk.com/api/auth/review/all";
 
