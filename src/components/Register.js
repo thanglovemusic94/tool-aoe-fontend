@@ -52,6 +52,16 @@ const vMagt = (value) => {
   }
 };
 
+const vnickZalo = (value) => {
+  if (value.length == 0) {
+    return (
+        <div className="alert alert-danger" role="alert">
+          Nick Zalo không được để trống
+        </div>
+    );
+  }
+};
+
 const Register = () => {
   const form = useRef();
   const checkBtn = useRef();
@@ -59,6 +69,7 @@ const Register = () => {
   const [inGame, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [magt, setMagt] = useState("");
+  const [nickZalo, setNickZalo] = useState("");
   const [successful, setSuccessful] = useState(false);
 
   const { message } = useSelector(state => state.message);
@@ -84,6 +95,11 @@ const Register = () => {
     setMagt(magth);
   };
 
+  const onChangeNickZalo = (e) => {
+    const nickZalo = e.target.value;
+    setNickZalo(nickZalo);
+  };
+
   const handleRegister = (e) => {
     e.preventDefault();
 
@@ -92,7 +108,7 @@ const Register = () => {
     form.current.validateAll();
 
     if (checkBtn.current.context._errors.length === 0) {
-      dispatch(register(inGame, password, magt))
+      dispatch(register(nickZalo, inGame, password, magt))
         .then((res) => {
           setSuccessful(true);
         })
@@ -117,6 +133,19 @@ const Register = () => {
         <Form onSubmit={handleRegister} ref={form}>
           {successful == false && (
             <div>
+
+              <div className="form-group">
+                <label htmlFor="nickZalo">Nick Zalo</label>
+                <Input
+                    type="text"
+                    className="form-control"
+                    name="nickZalo"
+                    value={nickZalo}
+                    onChange={onChangeNickZalo}
+                    validations={[required, vnickZalo]}
+                />
+              </div>
+
               <div className="form-group">
                 <label htmlFor="inGame">inGame</label>
                 <Input

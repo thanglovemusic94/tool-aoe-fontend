@@ -3,8 +3,9 @@ import axios from "axios";
 const API_URL = "http://localhost:8080/api";
 const API_URL_AUTH= API_URL + "/auth";
 
-const register = (inGame, password, maGT) => {
+const register = (nickZalo, inGame, password, maGT) => {
   return axios.post(API_URL+"/signup", {
+    nickZalo,
     inGame,
     password,
     maGT

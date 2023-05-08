@@ -26,7 +26,7 @@ const Home = () => {
                     return <Tag color={'cyan'}>C</Tag>
                 }else if (text === 'D'){
                     return <Tag color={'purple'}>D</Tag>
-                }
+                }else return <Tag color={'default'}>{`chưa được tính hạng`}</Tag>
             },
         },
         {
@@ -47,14 +47,14 @@ const Home = () => {
             key: 'diemtrungbinh',
             render: (text)  => <b>{text}</b>
         },
-        ,
-        {
-            title: 'Xem chi tiết ',
-            key: 'xemchitiet',
-            render: (text)  => <Space size="middle">
-                <Button size={'small'} type="primary">Xem chi tiết</Button>
-            </Space>
-        }
+        // ,
+        // {
+        //     title: 'Xem chi tiết ',
+        //     key: 'xemchitiet',
+        //     render: (text)  => <Space size="middle">
+        //         <Button size={'small'} type="primary">Xem chi tiết</Button>
+        //     </Space>
+        // }
 
     ];
     const [data, setData] = useState(null);
