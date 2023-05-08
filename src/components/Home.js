@@ -42,7 +42,7 @@ const Home = () => {
             render: (text) => <b>{text}</b>,
         },
         {
-            title: 'Điểm Trung Bình',
+            title: 'Tổng Điểm = (Điểm Trung Bình Các Tiêu Chí)',
             dataIndex: 'diemtrungbinh',
             key: 'diemtrungbinh',
             render: (text)  => <b>{text}</b>

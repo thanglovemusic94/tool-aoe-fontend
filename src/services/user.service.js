@@ -10,6 +10,10 @@ const getAll = (paging) => {
   return axios.get(API_URL+"/home", {params: paging, paramsSerializer: paging => stringify(paging)})
 }
 
+const getAlDiemTrungBinh = (type, paging) => {
+  return axios.get(API_URL+"/home/diemtrungbinh", {params: {type, ...paging}, paramsSerializer: paging => stringify(paging)})
+}
+
 const getAllMaGT = (paging) => {
   return axios.get(API_URL_AUTH+"/admin/magt", {
     params: paging,
@@ -55,6 +59,7 @@ const saveReview = (body) =>{
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {
+  getAlDiemTrungBinh,
   deleteUser,
   getAllUsers,
   createNewMaGT,
