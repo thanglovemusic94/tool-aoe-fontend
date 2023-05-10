@@ -5,15 +5,19 @@ import {stringify} from "../util/QueryUtil";
 //const API_URL = "http://localhost:8080/api";
 const API_URL = "http://toolaoe.ap-southeast-1.elasticbeanstalk.com/api";
 const API_URL_AUTH= API_URL + "/auth";
-// const API_URL2= "http://aoerank.ap-southeast-1.elasticbeanstalk.com/api/auth/review/all";
+
 
 const getAll = (paging) => {
   return axios.get(API_URL+"/home", {params: paging, paramsSerializer: paging => stringify(paging)})
 }
 
-const getAlDiemTrungBinh = (type, paging) => {
-  return axios.get(API_URL+"/home/diemtrungbinh", {params: {type, ...paging}, paramsSerializer: paging => stringify(paging)})
+const getDiemTrungBinh = (user_review_id) => {
+  return axios.get(API_URL+"/home/diemtrungbinh", {params: {user_review_id: user_review_id}})
 }
+
+// const getAlDiemTrungBinh = (type, paging) => {
+//   return axios.get(API_URL+"/home/diemtrungbinh", {params: {type, ...paging}, paramsSerializer: paging => stringify(paging)})
+// }
 
 const getAllMaGT = (paging) => {
   return axios.get(API_URL_AUTH+"/admin/magt", {
@@ -60,7 +64,8 @@ const saveReview = (body) =>{
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {
-  getAlDiemTrungBinh,
+  // getAlDiemTrungBinh,
+  getDiemTrungBinh,
   deleteUser,
   getAllUsers,
   createNewMaGT,

@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from "react";
 
 import UserService from "../services/user.service";
-import {Badge, Button, Space, Table, Tag} from "antd";
+import {Button, Popconfirm, Space, Table, Tag} from "antd";
 import {Link} from "react-router-dom";
-import {LocalStorageManager} from "../common/LocalStorageManager";
+import DiemTrungBinhDetail from "./DiemTrungBinhDetail";
 
 const Home = () => {
     const columns = [
@@ -36,28 +36,19 @@ const Home = () => {
             render: (text) => <b>{text}</b>,
         },
         {
-            title: 'Nick Zalo',
-            dataIndex: 'nickZalo',
-            key: 'nickZalo',
-            render: (text) => <b>{text}</b>,
-        },
-        {
-            title: 'Tổng Điểm = (Điểm Trung Bình Các Tiêu Chí)',
+            title: 'Tổng Điểm',
             dataIndex: 'diemtrungbinh',
             key: 'diemtrungbinh',
             render: (text)  => <b>{text}</b>
         },
-        // ,
-        // {
-        //     title: 'Xem chi tiết ',
-        //     key: 'xemchitiet',
-        //     render: (text)  => <Space size="middle">
-        //         <Button size={'small'} type="primary">Xem chi tiết</Button>
-        //     </Space>
-        // }
-
+        {
+            title: 'Xem chi tiết ',
+            key: 'user_review_id',
+            render: (data)  => <DiemTrungBinhDetail data={data} />
+        }
     ];
     const [data, setData] = useState(null);
+
     const [paging, setPaging] = useState({
         page: 0,
         size: 10,
@@ -100,7 +91,7 @@ const Home = () => {
     <div className="container">
         {
             data &&
-            <Table bordered rowKey={obj => obj.user_review_id} columns={columns} dataSource={data?.content} pagination={{
+            <Table  bordered rowKey={obj => obj.user_review_id} columns={columns} dataSource={data?.content} pagination={{
                 position: ["bottomCenter"],
                 itemRender: itemRender,
                 current: paging.page + 1,

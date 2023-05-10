@@ -13,7 +13,7 @@ const required = (value) => {
   if (!value) {
     return (
       <div className="alert alert-danger" role="alert">
-        This field is required!
+        Không Được Để Trống
       </div>
     );
   }
@@ -98,7 +98,7 @@ const Login = (props) => {
           <div className="form-group">
             <label htmlFor="password">Mật Khẩu</label>
             <Input
-              type="password"
+              type="text"
               className="form-control"
               name="password"
               value={password}

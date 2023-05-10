@@ -9,6 +9,7 @@ import {register} from "../actions/auth";
 import {Link, useNavigate} from "react-router-dom";
 import {setMessage} from "../actions/message";
 import UserService from "../services/user.service";
+import {Col, Row} from "antd";
 
 const required = (value) => {
   if (!value) {
@@ -62,6 +63,29 @@ const vnickZalo = (value) => {
   }
 };
 
+const vhovaten = (value) => {
+
+  if (value.length == 0) {
+    return (
+        <div className="alert alert-danger" role="alert">
+          Họ và tên không được để trống
+        </div>
+    );
+  }
+};
+
+const vSdt = (value) => {
+  const regexPhoneNumber = /(84|0[3|5|7|8|9]|01[2|6|8|9])+([0-9]{8})\b/g;
+  console.log(value.match(regexPhoneNumber))
+  if (value.match(regexPhoneNumber) === false) {
+    return (
+        <div className="alert alert-danger" role="alert">
+          Số điện thoại chưa đúng định dạng
+        </div>
+    );
+  }
+};
+
 const Register = () => {
   const form = useRef();
   const checkBtn = useRef();
@@ -70,6 +94,9 @@ const Register = () => {
   const [password, setPassword] = useState("");
   const [magt, setMagt] = useState("");
   const [nickZalo, setNickZalo] = useState("");
+  const [nickFb, setNickFb] = useState("");
+  const [hovaten, setHovaten] = useState("");
+  const [sdt, setSdt] = useState("");
   const [successful, setSuccessful] = useState(false);
 
   const { message } = useSelector(state => state.message);
@@ -100,6 +127,21 @@ const Register = () => {
     setNickZalo(nickZalo);
   };
 
+  const onChangeNickFb = (e) => {
+    const nickFb = e.target.value;
+    setNickFb(nickFb);
+  };
+  const onChangeSdt = (e) => {
+    const sdt = e.target.value;
+    setSdt(sdt);
+  };
+
+  const onChangeHovaten = (e) => {
+    const ht = e.target.value;
+    setHovaten(ht);
+  };
+
+
   const handleRegister = (e) => {
     e.preventDefault();
 
@@ -108,7 +150,7 @@ const Register = () => {
     form.current.validateAll();
 
     if (checkBtn.current.context._errors.length === 0) {
-      dispatch(register(nickZalo, inGame, password, magt))
+      dispatch(register(nickZalo, nickFb, sdt, hovaten, inGame, password, magt))
         .then((res) => {
           setSuccessful(true);
         })
@@ -132,46 +174,58 @@ const Register = () => {
         <h3 className={'text-center'}>Đăng Ký</h3>
         <Form onSubmit={handleRegister} ref={form}>
           {successful == false && (
-            <div>
 
-              <div className="form-group">
-                <label htmlFor="nickZalo">Nick Zalo</label>
+            <div>
+              <div  className="form-group">
+                <label htmlFor="hovaten">Họ và Tên <span className={'text-danger'}>*</span></label>
                 <Input
                     type="text"
                     className="form-control"
-                    name="nickZalo"
-                    value={nickZalo}
-                    onChange={onChangeNickZalo}
-                    validations={[required, vnickZalo]}
+                    name="hovaten"
+                    value={hovaten}
+                    onChange={onChangeHovaten}
+                    validations={[required, vhovaten]}
                 />
               </div>
 
               <div className="form-group">
-                <label htmlFor="inGame">inGame</label>
+                <label htmlFor="sdt">Số Điện Thoại <span className={'text-danger'}>*</span></label>
                 <Input
-                  type="text"
-                  className="form-control"
-                  name="inGame"
-                  value={inGame}
-                  onChange={onChangeUsername}
-                  validations={[required, vusername]}
+                    type="text"
+                    className="form-control"
+                    name="sdt"
+                    value={sdt}
+                    onChange={onChangeSdt}
+                    validations={[required, vSdt]}
                 />
               </div>
 
               <div className="form-group">
-                <label htmlFor="password">Mật Khẩu</label>
+                <label htmlFor="inGame">inGame <span className={'text-danger'}>*</span></label>
                 <Input
-                  type="password"
-                  className="form-control"
-                  name="password"
-                  value={password}
-                  onChange={onChangePassword}
-                  validations={[required, vpassword]}
+                    type="text"
+                    className="form-control"
+                    name="inGame"
+                    value={inGame}
+                    onChange={onChangeUsername}
+                    validations={[required, vusername]}
                 />
               </div>
 
               <div className="form-group">
-                <label htmlFor="magt">Mã giới Thiệu</label>
+                <label htmlFor="password">Mật Khẩu <span className={'text-danger'}>*</span></label>
+                <Input
+                    type="text"
+                    className="form-control"
+                    name="password"
+                    value={password}
+                    onChange={onChangePassword}
+                    validations={[required, vpassword]}
+                />
+              </div>
+
+              <div className="form-group">
+                <label htmlFor="magt">Mã giới Thiệu <span className={'text-danger'}>*</span></label>
                 <Input
                     type="text"
                     className="form-control"
@@ -181,6 +235,29 @@ const Register = () => {
                     validations={[required, vMagt]}
                 />
               </div>
+
+              <div className="form-group">
+                <label htmlFor="nickZalo">Nick Zalo</label>
+                <Input
+                    type="text"
+                    className="form-control"
+                    name="nickZalo"
+                    value={nickZalo}
+                    onChange={onChangeNickZalo}
+                />
+              </div>
+
+              <div className="form-group">
+                <label htmlFor="nickFb">Nick Facebook </label>
+                <Input
+                    type="text"
+                    className="form-control"
+                    name="nickFb"
+                    value={nickFb}
+                    onChange={onChangeNickFb}
+                />
+              </div>
+
 
               <div className="form-group">
                 <button className="btn btn-primary btn-block">Đăng Ký</button>

@@ -10,8 +10,8 @@ import {
 import AuthService from "../services/auth.service";
 import {setMessage} from "./message";
 
-export const register = (nickZalo, inGame, password, maGT) => (dispatch) => {
-  return AuthService.register(nickZalo, inGame, password, maGT).then(
+export const register = (nickZalo, nickFb, sdt, hovaten, inGame, password, maGT) => (dispatch) => {
+  return AuthService.register(nickZalo, nickFb, sdt, hovaten, inGame, password, maGT).then(
     (response) => {
       dispatch({
         type: REGISTER_SUCCESS,

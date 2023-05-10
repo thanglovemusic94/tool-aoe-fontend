@@ -63,7 +63,8 @@ const App = () => {
     <div>
       <nav className="navbar navbar-expand navbar-dark bg-dark">
         <Link to={"/"} className="navbar-brand">
-          Đế Chế Cỏ Lịch Sự
+          {/*<img width={50} src={"kiem1.svg"} color={"danger"}/>*/}
+          🏆  𝒞𝒽ế 𝒞ỏ - 𝒱𝓊𝒾 𝒱ẻ - 𝐿ị𝒸𝒽 𝒮ự  🏆
         </Link>
         <div className="navbar-nav mr-auto">
           <li className="nav-item">
@@ -71,11 +72,11 @@ const App = () => {
               Xem Hạng
             </Link>
           </li>
-          <li className="nav-item">
-            <Link to={"/diem-trung-binh"} className="nav-link">
-              Điểm Trung Bình
-            </Link>
-          </li>
+          {/*<li className="nav-item">*/}
+          {/*  <Link to={"/diem-trung-binh"} className="nav-link">*/}
+          {/*    Điểm Trung Bình*/}
+          {/*  </Link>*/}
+          {/*</li>*/}
           {
               currentUser &&
               <li className="nav-item">
@@ -146,7 +147,7 @@ const App = () => {
           <Route path="/cham-diem" element={<ChamDiem />} />
           <Route path="/quan-ly-magt" element={<MaGT />} />
           <Route path="/quan-ly-user" element={<User />} />
-          <Route path="/diem-trung-binh" element={<DiemTrungBinh />} />
+          {/*<Route path="/diem-trung-binh" element={<DiemTrungBinh />} />*/}
         </Routes>
       </div>
 
