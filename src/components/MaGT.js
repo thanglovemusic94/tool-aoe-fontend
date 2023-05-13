@@ -41,7 +41,7 @@ const MaGT = () => {
     const [data, setData] = useState(null);
     const [paging, setPaging] = useState({
         page: 0,
-        size: 10,
+        size: 50,
         sort: ['status,DESC', 'id,DESC']
     });
 
