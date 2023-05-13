@@ -53,31 +53,32 @@ const ThaoTacTay = ({type}) => {
     );
     }, [refresh]);
     return (
-        <>
+        <div className={'mb-5'}>
             <div className={'text-center'}>
-                <Button onClick={onSubmit} disabled={buttonDisable} className={'btn btn-danger btn-sm'}>Lưu Thay Đổi</Button>
+                <Button onClick={onSubmit} disabled={buttonDisable} className={'btn btn-danger btn-sm mb-5'}>Lưu Thay Đổi</Button>
             </div>
 
             {
                 data.length > 0 ? data.map((item, index) => {
                     return (
                         <Row key={index} className={'justify-content-center'}>
-                            <Col span={3}>
+                            <Col xs={{span: 12}} md={{span: 3}}>
                                 <b>{item.inGame}</b>
                             </Col>
-                            <Col span={7}>
+                            <Col xs={{span: 18}} md={{span: 16}} >
                                 <Slider
-                                    railStyle={{color: "red", borderColor: "blue"}}
                                     dots={true}
-                                    min={1}
+                                    step={0.1}
+                                    min={0}
                                     max={10}
                                     onChange={(value) => onChange(value, index)}
                                     value={item.point}
                                 />
                             </Col>
-                            <Col span={2}>
+                            <Col xs={{span: 1}} md={{span: 1}}>
                                 <InputNumber
-                                    min={1}
+                                    step={0.1}
+                                    min={0}
                                     max={10}
                                     style={{
                                         margin: '0 16px',
@@ -92,7 +93,7 @@ const ThaoTacTay = ({type}) => {
 
             }
 
-        </>
+        </div>
     )
 }
 

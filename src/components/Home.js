@@ -39,12 +39,12 @@ const Home = () => {
             title: 'Tổng Điểm',
             dataIndex: 'diemtrungbinh',
             key: 'diemtrungbinh',
-            render: (text)  => <b>{text}</b>
+            render: (text)  => <b>{text}</b>,
         },
         {
             title: 'Xem chi tiết ',
             key: 'user_review_id',
-            render: (data)  => <DiemTrungBinhDetail data={data} />
+            render: (data)  => <DiemTrungBinhDetail data={data} />,
         }
     ];
     const [data, setData] = useState(null);

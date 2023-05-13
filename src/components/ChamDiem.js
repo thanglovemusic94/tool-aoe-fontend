@@ -1,4 +1,4 @@
-import {Tabs} from "antd";
+import {Col, Row, Tabs} from "antd";
 import ThaoTacTay from "./type/ThaoTacTay";
 import {useState} from "react";
 
@@ -49,9 +49,19 @@ const ChamDiem = () => {
         }
     ];
   return (
-      <>
-          <Tabs  defaultActiveKey={key} items={items} onChange={onChange} centered={true} size={'large'} />
-      </>
+
+    <Row>
+        <Col xs={{ span: 24}} md={{ span: 24}}>
+            <Tabs defaultActiveKey={key} items={items} onChange={onChange} centered={true} size={'large'}
+                  renderTabBar={(props, TabNavList) => (
+                      <TabNavList {...props} mobile={false} />
+                  )}
+            >
+            </Tabs>
+        </Col>
+
+    </Row>
+
   )
 }
 

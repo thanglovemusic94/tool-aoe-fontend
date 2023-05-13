@@ -3,6 +3,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {Link, Route, Routes, useLocation, useNavigate} from "react-router-dom";
 
 import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/js/bootstrap.min";
 import "./App.css";
 
 import Login from "./components/Login";
@@ -61,83 +62,92 @@ const App = () => {
 
   return (
     <div>
-      <nav className="navbar navbar-expand navbar-dark bg-dark">
+
+
+
+      <nav className="navbar navbar-expand-md navbar-dark bg-dark mb-4">
+        <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+                aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+          <span className="navbar-toggler-icon"></span>
+        </button>
         <Link to={"/"} className="navbar-brand">
           {/*<img width={50} src={"kiem1.svg"} color={"danger"}/>*/}
           🏆  𝒞𝒽ế 𝒞ỏ - 𝒱𝓊𝒾 𝒱ẻ - 𝐿ị𝒸𝒽 𝒮ự  🏆
         </Link>
-        <div className="navbar-nav mr-auto">
-          <li className="nav-item">
-            <Link to={"/home"} className="nav-link">
-              Xem Hạng
-            </Link>
-          </li>
-          {/*<li className="nav-item">*/}
-          {/*  <Link to={"/diem-trung-binh"} className="nav-link">*/}
-          {/*    Điểm Trung Bình*/}
-          {/*  </Link>*/}
-          {/*</li>*/}
-          {
-              currentUser &&
-              <li className="nav-item">
-                <Link to={"/cham-diem"} className="nav-link">
-                  Chấm Điểm
-                </Link>
-              </li>
-          }
 
-          {
-              currentUser && currentUser.roles?.indexOf('ROLE_ADMIN') != -1 &&
-             <>
-               <li className="nav-item">
-                 <Link to={"/quan-ly-magt"} className="nav-link">
-                   Quản lý mã giới thiệu
-                 </Link>
-               </li>
+        <div className="collapse navbar-collapse justify-content-md-center" id="navbarCollapse">
+          <ul className="navbar-nav mr-auto text-center">
+            <li className="nav-item ">
+              <Link to={"/home"} className="nav-link">
+                Xem Hạng
+              </Link>
+            </li>
+            {
+                currentUser &&
+                <li className="nav-item">
+                  <Link to={"/cham-diem"} className="nav-link">
+                    Chấm Điểm
+                  </Link>
+                </li>
+            }
 
-               <li className="nav-item">
-                 <Link to={"/quan-ly-user"} className="nav-link">
-                   Quản lý Người Dùng
-                 </Link>
-               </li>
+            {
+                currentUser && currentUser.roles?.indexOf('ROLE_ADMIN') != -1 &&
+                <div >
+                  <li className="nav-item  d-inline-block">
+                    <Link to={"/quan-ly-magt"} className="nav-link">
+                      Quản lý mã giới thiệu
+                    </Link>
+                  </li> _
 
-             </>
+                  <li  className="nav-item d-inline-block">
+                    <Link to={"/quan-ly-user"} className="nav-link">
+                      Quản lý Người Dùng
+                    </Link>
+                  </li>
 
-          }
+                </div>
+
+            }
+
+
+          </ul>
+
+            {currentUser ?
+                <div className="navbar-nav text-center">
+                  <li className="nav-item">
+                    <Link to={"/profile"} className="nav-link">
+                      {currentUser.username}
+                    </Link>
+                  </li>
+                  <li className="nav-item">
+                    <a href="/login" className="nav-link" onClick={logOut}>
+                      Đăng Xuất
+                    </a>
+                  </li>
+                </div>
+                :
+
+                <div className="navbar-nav text-center">
+                  <li className="nav-item d-inline my-3">
+                    <Link to={"/login"} className="nav-link d-inline">
+                      Đăng Nhập
+                    </Link>
+                  </li>
+
+                  <li className="nav-item d-inline my-3">
+                    <Link to={"/register"}  className="nav-link d-inline">
+                      Đăng Ký
+                    </Link>
+                  </li>
+                </div>
+
+            }
 
         </div>
-
-        {currentUser ? (
-          <div className="navbar-nav ml-auto">
-            <li className="nav-item">
-              <Link to={"/profile"} className="nav-link">
-                {currentUser.username}
-              </Link>
-            </li>
-            <li className="nav-item">
-              <a href="/login" className="nav-link" onClick={logOut}>
-                Đăng Xuất
-              </a>
-            </li>
-          </div>
-        ) : (
-          <div className="navbar-nav ml-auto">
-            <li className="nav-item">
-              <Link to={"/login"} className="nav-link">
-                Đăng Nhập
-              </Link>
-            </li>
-
-            <li className="nav-item">
-              <Link to={"/register"}  className="nav-link">
-                Đăng Ký
-              </Link>
-            </li>
-          </div>
-        )}
       </nav>
 
-      <div className="container-fluid-sm mt-3">
+      <div className=" mt-3">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/home" element={<Home />} />
@@ -151,7 +161,7 @@ const App = () => {
         </Routes>
       </div>
 
-      {/* <AuthVerify logOut={logOut}/> */}
+       {/*<AuthVerify logOut={logOut}/>*/}
     </div>
   );
 };
