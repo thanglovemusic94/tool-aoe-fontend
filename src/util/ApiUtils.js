@@ -3,12 +3,14 @@ import {stringify} from "./QueryUtil";
 import {LocalStorageManager} from "../common/LocalStorageManager";
 axios.interceptors.request.use(
     config => {
-        if (process.env.NODE_ENV == 'development'){
-            config.baseURL =  'http://localhost:8080/api';
-        }else {
-            config.baseURL = 'http://toolaoe.ap-southeast-1.elasticbeanstalk.com/api';
-        }
+        // if (process.env.NODE_ENV == 'development'){
+        //     config.baseURL =  'http://localhost:8080/api';
+        // }else {
+        //     config.baseURL = 'http://toolaoe.ap-southeast-1.elasticbeanstalk.com/api';
+        // }
 
+        //config.baseURL =  'http://localhost:8080/api';
+        config.baseURL = 'http://toolaoe.ap-southeast-1.elasticbeanstalk.com/api';
         config.responseType = 'json';
         config.paramsSerializer = (params) => {
             return stringify(params)
