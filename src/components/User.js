@@ -63,7 +63,6 @@ const User = () => {
     const { message } = useSelector(state => state.message);
     const dispatch = useDispatch();
 
-    console.log(message)
     const [data, setData] = useState(null);
     const [paging, setPaging] = useState({
         page: 0,

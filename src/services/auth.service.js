@@ -1,18 +1,15 @@
-import axios from "axios";
+import API from "../util/ApiUtils";
 
-const API_URL = "http://toolaoe.ap-southeast-1.elasticbeanstalk.com/api";
-//const API_URL = "http://localhost:8080/api";
-const API_URL_AUTH= API_URL + "/auth";
 
 const register = (nickZalo, nickFb, sdt, hovaten, inGame, password, maGT) => {
-  return axios.post(API_URL+"/signup", {
+  return API.post("/signup", {
     nickZalo, nickFb, sdt, hovaten, inGame, password, maGT
   });
 };
 
 const login = (inGame, password) => {
-  return axios
-    .post(API_URL + "/signin", {
+  return API
+    .post( "/signin", {
       inGame,
       password,
     })

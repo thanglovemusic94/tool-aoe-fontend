@@ -66,12 +66,13 @@ const Home = () => {
         return originalElement;
     };
     const onChange = (page) => {
-        setPaging({...paging, page: page-1})
+        setPaging({...paging, page: page-1, size: paging.size})
     };
     const onShowSizeChange = (current, pageSize) => {
-        setPaging({...paging, page: current-1, size: pageSize});
+        // console.log(current, pageSize)
+        setPaging({...paging, page: 0, size: pageSize});
     };
-
+    console.log(paging)
     useEffect(() => {
         UserService.getAll(paging).then(
             (response) => {
@@ -94,12 +95,14 @@ const Home = () => {
             <Table  bordered rowKey={obj => obj.user_review_id} columns={columns} dataSource={data?.content} pagination={{
                 position: ["bottomCenter"],
                 itemRender: itemRender,
-                current: paging.page + 1,
-                pageSize: paging.size,
+                defaultCurrent: paging.page + 1,
+                defaultPageSize: paging.size,
                 total: data?.totalElements,
-                onShowSizeChange: onShowSizeChange,
-                pageSizeOptions: [10, 20, 50, 100, 200],
+
+                // pageSizeOptions: [10, 20, 30, 40, 50],
+                // onShowSizeChange: onShowSizeChange,
                 onChange: (e) => onChange(e),
+
                 showSizeChanger: true
             }} />
         }
