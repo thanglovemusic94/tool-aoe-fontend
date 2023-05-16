@@ -1,6 +1,6 @@
 // import axios from "axios";
 // import {stringify} from "./QueryUtil";
-// import {LocalStorageManager} from "../common/LocalStorageManager";
+// import {sessionStorageManager} from "../common/sessionStorageManager";
 //
 // export const API = axios.create({
 //     baseURL: 'http://localhost:8080/api',
@@ -12,7 +12,7 @@
 //     config => {
 //         console.log("login api")
 //         console.log(config)
-//         const tokenString = LocalStorageManager.getPayloadToken()
+//         const tokenString = sessionStorageManager.getPayloadToken()
 //         if (tokenString) {
 //             config.headers.Authorization = `Bearer ${tokenString}`;
 //         }

@@ -1,108 +1,33 @@
 import React, {useEffect, useState} from "react";
 
 import UserService from "../services/user.service";
-import {Button, Popconfirm, Space, Table, Tag} from "antd";
-import {Link} from "react-router-dom";
+import {Badge, Button, Card, Col, Popconfirm, Row, Space, Table, Tag} from "antd";
+import {Link, useNavigate} from "react-router-dom";
 import DiemTrungBinhDetail from "./DiemTrungBinhDetail";
 
 const Home = () => {
-    const columns = [
-        {
-            title: 'Vị Trí Top',
-            dataIndex: 'rank',
-            key: 'rank',
-            render: (text) => <b>{text}</b>,
-        },
-        {
-            title: 'Hạng',
-            dataIndex: 'hang',
-            key: 'hang',
-            render: (text) => {
-                if (text === 'A') {
-                    return <Tag color={'red'}>A</Tag>
-                }else if (text === 'B'){
-                    return <Tag color={'success'}>B</Tag>
-                }else if (text === 'C'){
-                    return <Tag color={'cyan'}>C</Tag>
-                }else if (text === 'D'){
-                    return <Tag color={'purple'}>D</Tag>
-                }else return <Tag color={'default'}>{`chưa được tính hạng`}</Tag>
-            },
-        },
-        {
-            title: 'In Game',
-            dataIndex: 'inGame',
-            key: 'inGame',
-            render: (text) => <b>{text}</b>,
-        },
-        {
-            title: 'Tổng Điểm',
-            dataIndex: 'diemtrungbinh',
-            key: 'diemtrungbinh',
-            render: (text)  => <b>{text}</b>,
-        },
-        {
-            title: 'Xem chi tiết ',
-            key: 'user_review_id',
-            render: (data)  => <DiemTrungBinhDetail data={data} />,
-        }
-    ];
-    const [data, setData] = useState(null);
-
-    const [paging, setPaging] = useState({
-        page: 0,
-        size: 50,
-        // sort: ['id,DESC']
-    });
-
-
-    const itemRender = (_, type, originalElement) => {
-        if (type === 'prev') {
-            return <Link>Trang trước</Link>;
-        }
-        if (type === 'next') {
-            return <Link>Trang tiếp Theo</Link>;
-        }
-        return originalElement;
-    };
-    const onChange = (page) => {
-        setPaging({...paging, page: page-1})
-    };
-    const onShowSizeChange = (current, pageSize) => {
-        setPaging({...paging, page: current-1, size: pageSize});
-    };
-
-    useEffect(() => {
-        UserService.getAll(paging).then(
-            (response) => {
-                setData(response.data);
-            },
-            (error) => {
-                const _content =
-                    (error.response && error.response.data) ||
-                    error.message ||
-                    error.toString();
-
-            }
-        );
-    }, [paging]);
+    let navigate = useNavigate();
 
   return (
     <div className="container">
-        {
-            data &&
-            <Table  bordered rowKey={obj => obj.user_review_id} columns={columns} dataSource={data?.content} pagination={{
-                position: ["bottomCenter"],
-                itemRender: itemRender,
-                current: paging.page + 1,
-                pageSize: paging.size,
-                total: data?.totalElements,
-                onShowSizeChange: onShowSizeChange,
-                pageSizeOptions: [10, 20, 50, 100, 200],
-                onChange: (e) => onChange(e),
-                showSizeChanger: true
-            }} />
-        }
+        <div className={'d-flex justify-content-center'}>
+            <div className={'mr-5'}>
+                <p><b>Tham gia hội nhóm Zalo</b></p>
+                <a target={"_blank"} href={'https://www.facebook.com/groups/checovuive?gidzl=JdwW2sKOjsHDOgG8RmAqPK1XfWPq0RLbLspq1ojUipW4EwbMUWwpE5Gyg5OgN-ixL3_nLc8QL29QPHcqPW'}>
+                    <img width={100} height={100} src="./fb2.png" alt=""/>
+                </a>
+            </div>
+            <div>
+                <p><b>Tham gia hội nhóm Facebook</b></p>
+                <a target={"_blank"} href={'https://zalo.me/g/yscvjc094'}>
+                    <img width={100} height={100} src="./Logo%20Zalo%20Arc.png" alt=""/>
+                </a>
+            </div>
+
+        </div>
+        <div  className={'text-center mt-5'}>
+            <Button onClick={()=>navigate('/xem-hang')} className={'bg-primary text-white'}>Xem Hạng</Button>
+        </div>
 
     </div>
   );

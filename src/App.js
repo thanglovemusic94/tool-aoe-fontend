@@ -21,6 +21,7 @@ import MaGT from "./components/MaGT";
 import User from "./components/User";
 import DiemTrungBinhItem from "./components/DiemTrungBinhItem";
 import DiemTrungBinh from "./components/DiemTrungBinh";
+import XemHang from "./components/XemHang";
 
 const App = () => {
 
@@ -79,7 +80,12 @@ const App = () => {
           <ul className="navbar-nav mr-auto text-center">
             <li className="nav-item ">
               <Link to={"/home"} className="nav-link">
-                Xem Hạng
+                Trang Chủ
+              </Link>
+            </li>
+            <li className="nav-item ">
+              <Link to={"/xem-hang"} className="nav-link">
+               Xem Hạng
               </Link>
             </li>
             {
@@ -157,6 +163,7 @@ const App = () => {
           <Route path="/cham-diem" element={<ChamDiem />} />
           <Route path="/quan-ly-magt" element={<MaGT />} />
           <Route path="/quan-ly-user" element={<User />} />
+          <Route path="/xem-hang" element={<XemHang />} />
           {/*<Route path="/diem-trung-binh" element={<DiemTrungBinh />} />*/}
         </Routes>
       </div>

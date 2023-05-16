@@ -25,7 +25,7 @@ Open `src/services/auth-header.js` and modify `return` statement for appropriate
 
 ```js
 export default function authHeader() {
-  const user = JSON.parse(localStorage.getItem('user'));
+  const user = JSON.parse(sessionStorage.getItem('user'));
 
   if (user && user.accessToken) {
     // return { Authorization: 'Bearer ' + user.accessToken }; // for Spring Boot back-end

@@ -6,10 +6,11 @@ import {
   LOGOUT,
 } from "../actions/types";
 import jwtDecode from "jwt-decode";
-import {LocalStorageManager} from "../common/LocalStorageManager";
+import {sessionStorageManager} from "../common/LocalStorageManager";
 
 
-const user = LocalStorageManager.getToken() ? jwtDecode(localStorage.getItem("token")) : null;
+
+const user = sessionStorageManager.getToken() ? jwtDecode(sessionStorage.getItem("token")) : null;
 
 
 const initialState = user

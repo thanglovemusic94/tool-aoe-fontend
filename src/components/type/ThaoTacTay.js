@@ -62,20 +62,10 @@ const ThaoTacTay = ({type}) => {
                 data.length > 0 ? data.map((item, index) => {
                     return (
                         <Row key={index} className={'justify-content-center'}>
-                            <Col xs={{span: 12}} md={{span: 3}}>
+                            <Col xs={{span: 12}} md={{span: 2}}>
                                 <b>{item.inGame}</b>
                             </Col>
-                            <Col xs={{span: 18}} md={{span: 16}} >
-                                <Slider
-                                    dots={true}
-                                    step={0.1}
-                                    min={0}
-                                    max={10}
-                                    onChange={(value) => onChange(value, index)}
-                                    value={item.point}
-                                />
-                            </Col>
-                            <Col xs={{span: 1}} md={{span: 1}}>
+                            <Col xs={{span: 1}} md={{span: 2}}>
                                 <InputNumber
                                     step={0.1}
                                     min={0}
@@ -87,6 +77,18 @@ const ThaoTacTay = ({type}) => {
                                     onChange={(value) => onChange(value, index)}
                                 />
                             </Col>
+                            <Col xs={{span: 18}} md={{span: 15}} >
+                                <Slider
+                                    reverse={true}
+                                    dots={true}
+                                    step={0.1}
+                                    min={0}
+                                    max={10}
+                                    onChange={(value) => onChange(value, index)}
+                                    value={item.point}
+                                />
+                            </Col>
+
                         </Row>
                     )
                 }) : <></>
