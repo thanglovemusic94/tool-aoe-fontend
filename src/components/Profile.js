@@ -1,13 +1,12 @@
 import React, {useEffect, useState} from "react";
-import {Link, Navigate} from 'react-router-dom';
-import { useSelector } from "react-redux";
-import EventBus from "../common/EventBus";
+import {Link, useHistory} from 'react-router-dom';
+import {useSelector} from "react-redux";
 
 const Profile = () => {
   const [showUserBoard, setShowUserBoard] = useState(false);
   const { user: currentUser } = useSelector((state) => state.auth);
     console.log(currentUser)
-
+  const history = useHistory()
 
   useEffect(() => {
     if (currentUser) {
@@ -17,7 +16,7 @@ const Profile = () => {
     }
   }, [currentUser]);
   if (!currentUser) {
-    return <Navigate to="/login" />;
+    history.push('/login');
   }
   return (
     <div className="container">

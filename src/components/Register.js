@@ -6,10 +6,7 @@ import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
 
 import {register} from "../actions/auth";
-import {Link, useNavigate} from "react-router-dom";
-import {setMessage} from "../actions/message";
-import UserService from "../services/user.service";
-import {Col, Row} from "antd";
+import {useHistory} from "react-router-dom";
 
 const required = (value) => {
   if (!value) {
@@ -101,7 +98,7 @@ const Register = () => {
 
   const { message } = useSelector(state => state.message);
   const dispatch = useDispatch();
-  const navigate = useNavigate()
+  const history = useHistory()
 
 // refresh
 

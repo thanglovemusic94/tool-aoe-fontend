@@ -1,12 +1,12 @@
-import React, { useState, useRef } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Navigate, useNavigate  } from 'react-router-dom';
+import React, {useRef, useState} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {useHistory} from 'react-router-dom';
 
 import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
 
-import { login } from "../actions/auth";
+import {login} from "../actions/auth";
 import {setMessage} from "../actions/message";
 
 const required = (value) => {
@@ -20,8 +20,7 @@ const required = (value) => {
 };
 
 const Login = (props) => {
-  let navigate = useNavigate();
-
+  const history = useHistory()
   const form = useRef();
   const checkBtn = useRef();
 
@@ -54,8 +53,7 @@ const Login = (props) => {
     if (checkBtn.current.context._errors.length === 0) {
       dispatch(login(inGame, password))
         .then(() => {
-
-          navigate("/cham-diem");
+          history.push("/cham-diem")
           window.location.reload();
         })
         .catch(() => {
@@ -70,7 +68,7 @@ const Login = (props) => {
   };
 
   if (isLoggedIn) {
-    return <Navigate to="/profile" />;
+    history.push("/profile")
   }
 
   return (
