@@ -55,6 +55,7 @@ const BXH_44 = () => {
             dataIndex: 'diemtrungbinh',
             key: 'diemtrungbinh',
             render: (text)  => <b>{text}</b>,
+            sorter: (a, b) => a.diemtrungbinh - b.diemtrungbinh,
         },
         {
             title: 'Số người chấm điểm',
@@ -72,7 +73,7 @@ const BXH_44 = () => {
 
     const [paging, setPaging] = useState({
         page: 0,
-        size: 50,
+        size: 100,
         // sort: ['id,DESC']
     });
 
