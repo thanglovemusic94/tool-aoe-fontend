@@ -7,8 +7,14 @@ const API_URL = "http://toolaoe.ap-southeast-1.elasticbeanstalk.com/api";
 const API_URL_AUTH= API_URL + "/auth";
 
 
-const getAll = (paging) => {
-  return axios.get(API_URL+"/home", {params: paging, paramsSerializer: paging => stringify(paging)})
+const getAll = (paging, xh) => {
+  let params = {}
+  if (xh){
+    params = {...paging, xh}
+  }else {
+    params = paging
+  }
+  return axios.get(API_URL+"/home", {params: params, paramsSerializer: params => stringify(params)})
 }
 
 const getDiemTrungBinh = (user_review_id) => {

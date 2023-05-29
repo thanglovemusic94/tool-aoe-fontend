@@ -95,7 +95,7 @@ const BangXepHangCaNhan = () => {
     };
 
     useEffect(() => {
-        UserService.getAll(paging).then(
+        UserService.getAll(paging, "null").then(
             (response) => {
                 setData(response.data);
             },
