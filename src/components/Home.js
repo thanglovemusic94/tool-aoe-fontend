@@ -18,7 +18,7 @@ const Home = () => {
                         </a>
                     </div>
                     <div>
-                        <p><b>Tham gia hội nhóm Facebook</b></p>
+                        <p><b>Tham gia hội nhóm Facebookk</b></p>
                         <a target={"_blank"} href={'https://zalo.me/g/yscvjc094'}>
                             <img width={50} height={50} src="./Logo%20Zalo%20Arc.png" alt=""/>
                         </a>
