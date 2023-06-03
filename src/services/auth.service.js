@@ -1,4 +1,4 @@
-import axios from "axios";
+
 import {API} from "../util/ApiUtils";
 
 
@@ -9,7 +9,7 @@ const register = (nickZalo, nickFb, sdt, hovaten, inGame, password, maGT) => {
 };
 
 const login = (inGame, password) => {
-  return axios
+  return API
     .post( "/signin", {
       inGame,
       password,
