@@ -22,7 +22,6 @@ const App = () => {
 
     const {user: currentUser} = useSelector((state) => state.auth);
     const dispatch = useDispatch();
-    console.log("user", currentUser)
 
     let location = useLocation();
 

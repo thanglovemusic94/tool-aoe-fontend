@@ -10,7 +10,6 @@ export default function TheLayout() {
     const dispatch = useDispatch()
 
 
-    console.log(isLoggedIn)
     // useEffect(() => {
     //     if (isLogined) dispatch(getUserDetails())
     // }, [isLogined])

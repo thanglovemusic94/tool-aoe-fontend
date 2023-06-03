@@ -1,12 +1,9 @@
-import axios from "axios";
-import authHeader from "./auth-header";
 import {stringify} from "../util/QueryUtil";
-
-//const API_URL = "http://localhost:8080/api";
-const API_URL = "http://toolaoe.ap-southeast-1.elasticbeanstalk.com/api";
-const API_URL_AUTH= API_URL + "/auth";
+import {API} from "../util/ApiUtils";
 
 
+
+const API_URL_AUTH=   "/auth";
 const getAll = (paging, xh) => {
   let params = {}
   if (xh){
@@ -14,58 +11,45 @@ const getAll = (paging, xh) => {
   }else {
     params = paging
   }
-  return axios.get(API_URL+"/home", {params: params, paramsSerializer: params => stringify(params)})
+  return API.get("/home", {params: params, paramsSerializer: params => stringify(params)})
 }
 
 const getDiemTrungBinh = (user_review_id) => {
-  return axios.get(API_URL+"/home/diemtrungbinh", {params: {user_review_id: user_review_id}})
+  return API.get("/home/diemtrungbinh", {params: {user_review_id: user_review_id}})
 }
 
-// const getAlDiemTrungBinh = (type, paging) => {
-//   return axios.get(API_URL+"/home/diemtrungbinh", {params: {type, ...paging}, paramsSerializer: paging => stringify(paging)})
-// }
-
 const getAllMaGT = (paging) => {
-  return axios.get(API_URL_AUTH+"/admin/magt", {
+  return API.get(API_URL_AUTH+"/admin/magt", {
     params: paging,
-    paramsSerializer: paging => stringify(paging),
-    headers: authHeader()
+    paramsSerializer: paging => stringify(paging)
   })
 }
 
 const getAllUsers = (paging) => {
-  return axios.get(API_URL_AUTH+"/admin/users", {
+  return API.get(API_URL_AUTH+"/admin/users", {
     params: paging,
-    paramsSerializer: paging => stringify(paging),
-    headers: authHeader()
+    paramsSerializer: paging => stringify(paging)
   })
 }
 
 const deleteUser = (in_game) => {
-  return axios.delete(API_URL_AUTH+"/admin/user/" + in_game, {
-    headers: authHeader()
-  })
+  return API.delete(API_URL_AUTH+"/admin/user/" + in_game)
 }
 
 const createNewMaGT = () => {
-  return axios.post(API_URL_AUTH+"/admin/magt", null, {
-    headers: authHeader()
-  })
+  return API.post(API_URL_AUTH+"/admin/magt", null)
 }
 
 const getUserReview = (type) =>{
-  return axios.get(API_URL_AUTH+ "/user", {
+  return API.get(API_URL_AUTH+ "/user", {
     params: {
       type: type
-    },
-    headers: authHeader()
+    }
   });
 }
 
 const saveReview = (body) =>{
-  return axios.post(API_URL_AUTH+"/review", body, {
-    headers: authHeader()
-  });
+  return API.post(API_URL_AUTH+"/review", body);
 }
 
 // eslint-disable-next-line import/no-anonymous-default-export

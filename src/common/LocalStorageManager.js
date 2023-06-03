@@ -9,7 +9,7 @@ export const sessionStorageManager = {
 export const USER_TOKEN = "token"
 
 function getPayloadToken() {
-    return getToken().token;
+    return  getToken() ? getToken().token : null
 }
 
 function setToken(token) {

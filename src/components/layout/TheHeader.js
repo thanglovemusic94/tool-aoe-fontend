@@ -18,7 +18,6 @@ const TheHeader = () => {
 
     const { user: currentUser } = useSelector((state) => state.auth);
 
-    console.log(currentUser)
     let location = useLocation();
 
     useEffect(() => {
