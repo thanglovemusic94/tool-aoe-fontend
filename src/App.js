@@ -6,6 +6,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.min";
 import "./App.css";
 
+
 import {logout} from "./actions/auth";
 import {clearMessage} from "./actions/message";
 
@@ -55,7 +56,7 @@ const App = () => {
         <div>
 
 
-            <div className=" mt-3">
+            <div >
                 <Switch>
                     {/*<Route*/}
                     {/*    path="/roadApi"*/}

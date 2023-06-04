@@ -2,14 +2,12 @@ import React, {useEffect, useMemo, useState} from "react";
 
 import {useHistory} from "react-router-dom";
 import XemHang from "../XemHang";
-import {Button, Form, Input, message, Modal, notification, Space} from "antd";
+import {Modal, notification, Space} from "antd";
 import {useSelector} from "react-redux";
 import EventService from "../../services/event.service";
-import {CKEditor} from "@ckeditor/ckeditor5-react";
-import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import ModalThongTinGiai from "./ModalThongTinGiai";
-import type { NotificationPlacement } from 'antd/es/notification/interface'
-import {RadiusBottomleftOutlined} from "@ant-design/icons";
+
+
 const Home = () => {
     const history = useHistory();
     const { isLoggedIn } = useSelector(state => state.auth);
@@ -75,52 +73,92 @@ const Home = () => {
 
         <div className="row">
             <div className="col-2">
-                <div className={'d-flex justify-content-center'}>
-                    <div className={'mr-5'}>
-                        <p><b>Tham gia hội nhóm Zalo</b></p>
-                        <a target={"_blank"} href={'https://www.facebook.com/groups/checovuive?gidzl=JdwW2sKOjsHDOgG8RmAqPK1XfWPq0RLbLspq1ojUipW4EwbMUWwpE5Gyg5OgN-ixL3_nLc8QL29QPHcqPW'}>
-                            <img width={50} height={50} src="./fb2.png" alt=""/>
-                        </a>
+                <div className={'position-fixed '} style={{marginTop: "10px"}}>
+                    <div className={'d-flex justify-content-center'}>
+                        <div className={'mr-5'}>
+                            <p><b>Tham gia hội nhóm Zalo</b></p>
+                            <a target={"_blank"} href={'https://www.facebook.com/groups/checovuive?gidzl=JdwW2sKOjsHDOgG8RmAqPK1XfWPq0RLbLspq1ojUipW4EwbMUWwpE5Gyg5OgN-ixL3_nLc8QL29QPHcqPW'}>
+                                <img width={50} height={50} src="./fb2.png" alt=""/>
+                            </a>
+                        </div>
+                        <div>
+                            <p><b>Tham gia hội nhóm Facebookk</b></p>
+                            <a target={"_blank"} href={'https://zalo.me/g/yscvjc094'}>
+                                <img width={50} height={50} src="./Logo%20Zalo%20Arc.png" alt=""/>
+                            </a>
+                        </div>
+
                     </div>
-                    <div>
-                        <p><b>Tham gia hội nhóm Facebookk</b></p>
-                        <a target={"_blank"} href={'https://zalo.me/g/yscvjc094'}>
-                            <img width={50} height={50} src="./Logo%20Zalo%20Arc.png" alt=""/>
-                        </a>
+                    <div >
+                        <div  className={'py-3 mt-5 text-center block ' } style={{ minHeight: "300px", color: "red", backgroundImage: "url(" +`https://c4.wallpaperflare.com/wallpaper/71/307/812/age-of-empires-ii-hd-wallpaper-preview.jpg` +")", backgroundSize: "cover"}} >
+                            <h3 className={'text-white'}>Thông tin các giải đấu</h3>
+                            {dataEventNew ?
+                                <h4 >
+                                    {dataEventNew.title}
+                                    <div className={'w-50 mx-auto'}>
+                                        <button className={'btn btn-sm btn-outline-danger  a-button-effect  w-100 mt-3'} onClick={()=>setIsModalOpen(true)}>
+                                            <span></span>
+                                            <span></span>
+                                            <span></span>
+                                            <span></span>
+                                            Thông tin chi tết giải
+                                        </button>
+                                        <Modal centered width={1000} title="Thông tin giải đấu"  open={isModalOpen}  onOk={()=>setIsModalOpen(false)} onCancel={()=>setIsModalOpen(false)} >
+                                            <ModalThongTinGiai data={dataEventNew} />
+                                        </Modal>
+
+                                    </div>
+
+                                    <div className={'w-50 mx-auto'}>
+
+                                        <Context.Provider value={contextValue}>
+                                            {contextHolder}
+                                            <button className={'btn btn-sm btn-outline-danger a-button-effect w-100 mt-3'} onClick={()=>dangkygiaidau(dataEventNew)}>
+                                                <span></span>
+                                                <span></span>
+                                                <span></span>
+                                                <span></span>
+                                                Đăng Ký
+                                            </button>
+                                        </Context.Provider>
+                                    </div>
+                                    <div className={'w-50 mx-auto'}>
+                                        <button className={'btn btn-sm btn-outline-danger a-button-effect  w-100 mt-3'} onClick={()=>history.push('/danh-sach-dang-ky-giai', {...dataEventNew})}>
+                                            <span></span>
+                                            <span></span>
+                                            <span></span>
+                                            <span></span>
+                                            Danh Sách Đăng Ký
+                                        </button>
+                                    </div>
+
+
+                                    {/*<Panel header="Chuyển khoản - lệ phí tham gia giải đấu  " key="5" style={panelStyle}>*/}
+                                    {/*    <Space direction="vertical" align="center">*/}
+                                    {/*        <img width={200} height={300}  src="/bk.jpg"/>*/}
+
+                                    {/*    </Space>*/}
+                                    {/*</Panel>*/}
+                                </h4>:
+
+                                <div className={'text-white'}>chưa có giải đấu nào</div>
+
+                            }
+
+
+
+                        </div>
+
+                        <div className={'mt-5'}>
+                            {/*<iframe width="100%" height="200" src="https://www.youtube.com/embed/lscNSnlh3w4?controls=1&autoplay=1"*/}
+                            {/*        allow='autoplay'*/}
+
+                            {/*        allowFullScreen*/}
+
+                            {/*></iframe>*/}
+
+                        </div>
                     </div>
-
-                </div>
-                <div className={'py-3 mt-3 text-center text-danger border border-1 border-danger' }>
-                    <h3>Thông tin các giải đấu</h3>
-                    {dataEventNew ?
-                        <h4>
-                            {dataEventNew.title}
-                            <div>
-                                <button className={'btn btn-sm btn-info w-75 mt-3'} onClick={()=>setIsModalOpen(true)}>Thông tin chi tết giải</button>
-                                <Modal centered width={1000} title="Thông tin giải đấu"  open={isModalOpen}  onOk={()=>setIsModalOpen(false)} onCancel={()=>setIsModalOpen(false)} >
-                                    <ModalThongTinGiai data={dataEventNew} />
-                                </Modal>
-
-                            </div>
-                          
-                            <div>
-
-                                <Context.Provider value={contextValue}>
-                                        {contextHolder}
-                                        <button className={'btn btn-sm btn-info w-75 mt-3'} onClick={()=>dangkygiaidau(dataEventNew)}>Đăng Ký</button>
-                                </Context.Provider>
-                            </div>
-                            <div>
-                                <button className={'btn btn-sm btn-success w-75 mt-3'} onClick={()=>history.push('/danh-sach-dang-ky-giai', {...dataEventNew})}>Danh Sách Đăng Ký</button>
-                            </div>
-                        </h4>:
-
-                        <>chưa có giải đấu nào</>
-
-                    }
-
-
-
                 </div>
             </div>
             <div className="col-10">

@@ -1,4 +1,4 @@
-import {Collapse, theme} from "antd";
+import {Collapse, Input, QRCode, Space, theme} from "antd";
 import {CaretRightOutlined} from "@ant-design/icons";
 import React from "react";
 
@@ -12,6 +12,8 @@ const  ModalThongTinGiai = ({data}) => {
         borderRadius: token.borderRadiusLG,
         border: 'none',
     };
+
+ 
     return (
         <Collapse
             bordered={false}
@@ -32,6 +34,14 @@ const  ModalThongTinGiai = ({data}) => {
             </Panel>
             <Panel header="Chú ý" key="4" style={panelStyle}>
                 <div dangerouslySetInnerHTML={{__html: data.note}}></div>
+            </Panel>
+            <Panel header="Chuyển khoản - lệ phí tham gia giải đấu  " key="5" style={panelStyle}>
+                <h5>Nội dung gửi: </h5>
+                <h4 style={{color: "red"}}>Tên InGame - Tên Zalo</h4>
+                <Space direction="vertical" align="center">
+                    <img width={200} height={300}  src="/bk.jpg"/>
+
+                </Space>
             </Panel>
         </Collapse>
     );

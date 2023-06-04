@@ -28,6 +28,12 @@ const DanhSachDangKyGiai = (props) => {
 
     const columns = [
         {
+            title: 'STT',
+            dataIndex: 'stt',
+            key: 'stt',
+            render: (text) => <b>{text}</b>
+        },
+        {
             title: 'In Game',
             dataIndex: 'inGame',
             key: 'inGame',
