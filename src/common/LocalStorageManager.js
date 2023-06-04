@@ -1,4 +1,4 @@
-export const sessionStorageManager = {
+export const localStorageManager = {
     setToken,
     getToken,
     removeToken,
@@ -13,15 +13,15 @@ function getPayloadToken() {
 }
 
 function setToken(token) {
-    sessionStorage.setItem(USER_TOKEN, token);
+    localStorage.setItem(USER_TOKEN, token);
 }
 
 function getToken() {
-    return JSON.parse(sessionStorage.getItem(USER_TOKEN));
+    return JSON.parse(localStorage.getItem(USER_TOKEN));
 }
 
 function removeToken() {
-    sessionStorage.removeItem(USER_TOKEN);
+    localStorage.removeItem(USER_TOKEN);
 }
 
 

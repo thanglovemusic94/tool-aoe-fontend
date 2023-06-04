@@ -1,6 +1,6 @@
 import React, {useRef, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {useHistory} from 'react-router-dom';
+import {Link, useHistory} from 'react-router-dom';
 
 import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
@@ -8,6 +8,7 @@ import CheckButton from "react-validation/build/button";
 
 import {login} from "../actions/auth";
 import {setMessage} from "../actions/message";
+import EventService from "../services/event.service";
 
 const required = (value) => {
   if (!value) {
@@ -30,7 +31,9 @@ const Login = (props) => {
   const [status, setStatus] = useState(null);
   const { isLoggedIn } = useSelector(state => state.auth);
   const { message } = useSelector(state => state.message);
-
+  const checkDkiGiai = props.location.state?.checkDKGiai
+  const eventCode = props.location.state?.eventCode
+  console.log(props.location.state)
   const dispatch = useDispatch();
 
   const onChangeUsername = (e) => {
@@ -53,8 +56,18 @@ const Login = (props) => {
     if (checkBtn.current.context._errors.length === 0) {
       dispatch(login(inGame, password))
         .then(() => {
-          history.push("/cham-diem")
-          window.location.reload();
+          if (checkDkiGiai){
+            EventService.registerGiaiDau(eventCode).then(res =>{
+              const idEvent = props.location.state?.id
+              if (res.status == 200){
+                history.push("/danh-sach-dang-ky-giai", {statusDk: true, id: idEvent})
+              }
+            }).catch(err => console.log(err))
+          }else {
+            history.push("/cham-diem")
+          }
+
+          // window.location.reload();
         })
         .catch(() => {
           dispatch(setMessage("Lỗi, vui lòng đăng nhập lại "))
@@ -67,9 +80,9 @@ const Login = (props) => {
     }
   };
 
-  if (isLoggedIn) {
-    history.push("/profile")
-  }
+  // if (isLoggedIn) {
+  //   history.push("/profile")
+  // }
 
   return (
     <div className="col-md-12">
@@ -113,7 +126,21 @@ const Login = (props) => {
               <span>Login</span>
             </button>
           </div>
+          <div className="form-group">
 
+
+            {checkDkiGiai &&
+                <>
+                  <div className="alert alert-danger" role="alert">
+                    {'Nếu chưa có tài khoản vui lòng nhấp vào liên kết này '}
+                    <Link to={"/register"}>đăng kí tài khoản</Link>
+                  </div>
+                </>
+
+
+            }
+
+          </div>
 
             <div className="form-group">
 

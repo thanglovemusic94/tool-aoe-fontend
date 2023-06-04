@@ -13,7 +13,7 @@
 //   let location = useLocation();
 //
 //   useEffect(() => {
-//     const token = JSON.parse(sessionStorage.getItem("token"));
+//     const token = JSON.parse(localStorage.getItem("token"));
 //
 //     if (token) {
 //       const decodedJwt = parseJwt(token);

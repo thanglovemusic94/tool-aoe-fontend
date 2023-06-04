@@ -1,6 +1,6 @@
 import axios from "axios";
 import {stringify} from "./QueryUtil";
-import {sessionStorageManager} from "../common/LocalStorageManager";
+import {localStorageManager} from "../common/LocalStorageManager";
 
 
 export const API = axios.create({
@@ -13,7 +13,7 @@ export const API = axios.create({
 
     API.interceptors.request.use(
     config => {
-        const tokenString = sessionStorageManager.getPayloadToken();
+        const tokenString = localStorageManager.getPayloadToken();
         if (tokenString) {
             config.headers.Authorization = `Bearer ${tokenString}`;
         }

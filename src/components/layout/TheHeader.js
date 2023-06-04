@@ -89,6 +89,12 @@ const TheHeader = () => {
                                 </Link>
                             </li>
 
+                            <li  className="nav-item d-inline-block">
+                                <Link to={"/quan-ly-event"} className="nav-link">
+                                    Quản lý Sự Kiện
+                                </Link>
+                            </li>
+
                         </div>
 
                     }

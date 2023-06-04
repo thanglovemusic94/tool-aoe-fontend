@@ -16,7 +16,7 @@ const login = (inGame, password) => {
     })
     .then((response) => {
       if (response.data.token) {
-        sessionStorage.setItem("token", JSON.stringify(response.data));
+        localStorage.setItem("token", JSON.stringify(response.data));
       }
 
       return response.data;
@@ -24,7 +24,7 @@ const login = (inGame, password) => {
 };
 
 const logout = () => {
-  sessionStorage.removeItem("token");
+  localStorage.removeItem("token");
 };
 
 export default {

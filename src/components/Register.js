@@ -224,6 +224,7 @@ const Register = () => {
               <div className="form-group">
                 <label htmlFor="magt">Mã giới Thiệu <span className={'text-danger'}>*</span></label>
                 <Input
+                    placeholder={"Hỏi admin nhóm để lấy mã"}
                     type="text"
                     className="form-control"
                     name="magt"
