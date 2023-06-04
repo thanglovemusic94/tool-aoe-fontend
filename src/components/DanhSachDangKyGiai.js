@@ -49,11 +49,12 @@ const DanhSachDangKyGiai = (props) => {
             dataIndex: 'statusDongTien',
             key: 'statusDongTien',
             render: (status) => {
-                if (status === true){
-                    return <Tag color={'green-inverse'}> đã đóng </Tag>
-                }else {
-                    return <Tag color={'red'} > chưa đóng </Tag>
-                }
+                // if (status === true){
+                //     return <Tag color={'green-inverse'}> đã đóng </Tag>
+                // }else {
+                //     return <Tag color={'red'} > chưa đóng </Tag>
+                // }
+                return <Tag color={'red'} > chưa đóng </Tag>
             }
         },
         {
