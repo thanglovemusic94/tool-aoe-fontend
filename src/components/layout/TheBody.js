@@ -19,7 +19,7 @@ export default function TheBody() {
     // console.log(isLogined)
     return (
 
-            <div className="container-fluid">
+            <div className="container-fluid min-vh-100">
                 <React.Suspense fallback={loading}>
                     {routes.map((item, index) => {
                         // if (item.path === '/write-inquiry' && isLogined === false){
