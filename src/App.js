@@ -5,6 +5,8 @@ import {Route, Switch, useLocation} from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.min";
 import "./App.css";
+import "./demo.css";
+import "./demo";
 
 
 import {logout} from "./actions/auth";

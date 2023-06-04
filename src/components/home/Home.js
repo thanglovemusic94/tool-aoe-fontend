@@ -91,19 +91,19 @@ const Home = () => {
                     </div>
                     <div >
                         <div  className={'py-3 mt-5 text-center block ' } style={{ minHeight: "300px", color: "red", backgroundImage: "url(" +`https://c4.wallpaperflare.com/wallpaper/71/307/812/age-of-empires-ii-hd-wallpaper-preview.jpg` +")", backgroundSize: "cover"}} >
-                            <h3 className={'text-white'}>Thông tin các giải đấu</h3>
+                            <h3 className={'text-white NeonLightText'}>Thông tin các giải đấu</h3>
                             {dataEventNew ?
-                                <h4 >
+                                <h4 className={'NeonLightText'}>
                                     {dataEventNew.title}
                                     <div className={'w-50 mx-auto'}>
-                                        <button className={'btn btn-sm btn-outline-danger  a-button-effect  w-100 mt-3'} onClick={()=>setIsModalOpen(true)}>
+                                        <button className={'btn btn-sm btn-outline-danger NeonLightText a-button-effect  w-100 mt-3'} onClick={()=>setIsModalOpen(true)}>
                                             <span></span>
                                             <span></span>
                                             <span></span>
                                             <span></span>
                                             Thông tin chi tết giải
                                         </button>
-                                        <Modal centered width={1000} title="Thông tin giải đấu"  open={isModalOpen}  onOk={()=>setIsModalOpen(false)} onCancel={()=>setIsModalOpen(false)} >
+                                        <Modal centered width={1000} title={()=><div className={'text-white NeonLightText'}>Thông tin giải đấu</div>}  open={isModalOpen}  onOk={()=>setIsModalOpen(false)} onCancel={()=>setIsModalOpen(false)} >
                                             <ModalThongTinGiai data={dataEventNew} />
                                         </Modal>
 
@@ -113,7 +113,7 @@ const Home = () => {
 
                                         <Context.Provider value={contextValue}>
                                             {contextHolder}
-                                            <button className={'btn btn-sm btn-outline-danger a-button-effect w-100 mt-3'} onClick={()=>dangkygiaidau(dataEventNew)}>
+                                            <button className={'btn btn-sm btn-outline-danger NeonLightText a-button-effect w-100 mt-3'} onClick={()=>dangkygiaidau(dataEventNew)}>
                                                 <span></span>
                                                 <span></span>
                                                 <span></span>
@@ -123,7 +123,7 @@ const Home = () => {
                                         </Context.Provider>
                                     </div>
                                     <div className={'w-50 mx-auto'}>
-                                        <button className={'btn btn-sm btn-outline-danger a-button-effect  w-100 mt-3'} onClick={()=>history.push('/danh-sach-dang-ky-giai', {...dataEventNew})}>
+                                        <button className={'btn btn-sm btn-outline-danger NeonLightText a-button-effect  w-100 mt-3'} onClick={()=>history.push('/danh-sach-dang-ky-giai', {...dataEventNew})}>
                                             <span></span>
                                             <span></span>
                                             <span></span>

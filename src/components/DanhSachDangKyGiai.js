@@ -87,7 +87,7 @@ const DanhSachDangKyGiai = (props) => {
     const [paging, setPaging] = useState({
         page: 0,
         size: 50,
-        sort: ['status,DESC', 'id,DESC']
+        sort: ['status,ASC', 'id,ASC']
     });
     const itemRender = (_, type, originalElement) => {
         if (type === 'prev') {
