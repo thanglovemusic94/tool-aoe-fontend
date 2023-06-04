@@ -1,17 +1,38 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useMemo, useState} from "react";
 
 import {useHistory} from "react-router-dom";
 import XemHang from "../XemHang";
-import {Button, Form, Input, Modal} from "antd";
+import {Button, Form, Input, message, Modal, notification, Space} from "antd";
 import {useSelector} from "react-redux";
 import EventService from "../../services/event.service";
 import {CKEditor} from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import ModalThongTinGiai from "./ModalThongTinGiai";
-
+import type { NotificationPlacement } from 'antd/es/notification/interface'
+import {RadiusBottomleftOutlined} from "@ant-design/icons";
 const Home = () => {
     const history = useHistory();
     const { isLoggedIn } = useSelector(state => state.auth);
+
+    const Context = React.createContext({
+        name: 'Default',
+    });
+
+    const [api, contextHolder] = notification.useNotification();
+    const openNotification = (placement, data) => {
+        api.info({
+            message: data,
+            // description: <Context.Consumer>{({ name }) => `Hello, ${name}!`}</Context.Consumer>,
+            placement,
+        });
+    };
+    const contextValue = useMemo(
+        () => ({
+            name: 'Ant Design',
+        }),
+        [],
+    );
+
     const dangkygiaidau = (eventData) => {
         console.log(eventData.eventCode)
         if (isLoggedIn){
@@ -19,7 +40,12 @@ const Home = () => {
                 if (res.status == 200){
                     history.push("/danh-sach-dang-ky-giai", {statusDk: true, id: eventData.id})
                 }
-            }).catch(err => console.log(err))
+            }).catch(err => {
+                if(err.response.status == 400){
+                    // success(err.response.data);
+                    openNotification('bottomLeft', err.response.data)
+                }
+            })
         }else {
             history.push("/login", {checkDKGiai: true, eventCode: eventData.eventCode, id: eventData.id})
         }
@@ -44,7 +70,9 @@ const Home = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     console.log(dataEventNew)
   return (
+
     <div className="container-fluid">
+
         <div className="row">
             <div className="col-2">
                 <div className={'d-flex justify-content-center'}>
@@ -74,8 +102,13 @@ const Home = () => {
                                 </Modal>
 
                             </div>
+                          
                             <div>
-                                <button className={'btn btn-sm btn-info w-75 mt-3'} onClick={()=>dangkygiaidau(dataEventNew)}>Đăng Ký</button>
+
+                                <Context.Provider value={contextValue}>
+                                        {contextHolder}
+                                        <button className={'btn btn-sm btn-info w-75 mt-3'} onClick={()=>dangkygiaidau(dataEventNew)}>Đăng Ký</button>
+                                </Context.Provider>
                             </div>
                             <div>
                                 <button className={'btn btn-sm btn-success w-75 mt-3'} onClick={()=>history.push('/danh-sach-dang-ky-giai', {...dataEventNew})}>Danh Sách Đăng Ký</button>

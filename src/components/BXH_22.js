@@ -58,12 +58,12 @@ const BXH_22 = () => {
             sorter: (a, b) => a.diemtrungbinh - b.diemtrungbinh,
             // sortOrder: sortedInfo.columnKey === 'diemtrungbinh' ? sortedInfo.order : null,
         },
-        {
-            title: 'Số người chấm điểm',
-            dataIndex: 'soNguoiChamDiem',
-            key: 'soNguoiChamDiem',
-            render: (text)  => <b className={'text-right'}>{text}</b>,
-        },
+        // {
+        //     title: 'Số người chấm điểm',
+        //     dataIndex: 'soNguoiChamDiem',
+        //     key: 'soNguoiChamDiem',
+        //     render: (text)  => <b className={'text-right'}>{text}</b>,
+        // },
         {
             title: 'Xem chi tiết ',
             key: 'user_review_id',

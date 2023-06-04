@@ -57,12 +57,12 @@ const BangXepHangCaNhan = () => {
             key: 'diemtrungbinh',
             render: (text)  => <b>{text}</b>,
         },
-        {
-            title: 'Số người chấm điểm',
-            dataIndex: 'soNguoiChamDiem',
-            key: 'soNguoiChamDiem',
-            render: (text)  => <b className={'text-right'}>{text}</b>,
-        },
+        // {
+        //     title: 'Số người chấm điểm',
+        //     dataIndex: 'soNguoiChamDiem',
+        //     key: 'soNguoiChamDiem',
+        //     render: (text)  => <b className={'text-right'}>{text}</b>,
+        // },
         {
             title: 'Xem chi tiết ',
             key: 'user_review_id',
