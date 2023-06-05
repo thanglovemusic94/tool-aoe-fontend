@@ -37,187 +37,144 @@ label {
 
 
 
-.block {
-  position: relative;
-  /*margin: 300px auto 0;*/
-  /*width: 500px;*/
-  /*height: 250px;*/
-  background: linear-gradient(0deg, #ffffff, #ffffff);
-}
-
-.block:before, .block:after {
-  content: '';
-  position: absolute;
-  left: -2px;
-  top: -2px;
-  background: linear-gradient(45deg, #fb0094, #0000ff, #00ff00,#ffff00, #ff0000, #fb0094,
-  #0000ff, #00ff00,#ffff00, #ff0000);
-
-  background-size: 400%;
-  width: calc(100% + 4px);
-  height: calc(100% + 4px);
-  z-index: -1;
-  animation: steam 20s linear infinite;
-}
-
-@keyframes steam {
-  0% {
-    background-position: 0 0;
-  }
-  50% {
-    background-position: 400% 0;
-  }
-  100% {
-    background-position: 0 0;
-  }
-}
-
-.block:after {
-  filter: blur(50px);
-}
-
-
-
-
 /*background*/
 
 
-.a-button-effect{
-  position: relative;
-  display: inline-block;
+/*.a-button-effect{*/
+/*  position: relative;*/
+/*  display: inline-block;*/
 
-  margin: 10px 0;
-  color: #03e9f4;
-  text-decoration: none;
-  text-transform: uppercase;
-  transition: 0.5s;
-  overflow: hidden;
-}
+/*  margin: 10px 0;*/
+/*  color: #03e9f4;*/
+/*  text-decoration: none;*/
+/*  text-transform: uppercase;*/
+/*  transition: 0.5s;*/
+/*  overflow: hidden;*/
+/*}*/
 
-.a-button-effect:nth-child(1){
-  filter: hue-rotate(270deg);
-}
-.a-button-effect:nth-child(2){
-  filter: hue-rotate(110deg);
-}
+/*.a-button-effect:nth-child(1){*/
+/*  filter: hue-rotate(270deg);*/
+/*}*/
+/*.a-button-effect:nth-child(2){*/
+/*  filter: hue-rotate(110deg);*/
+/*}*/
 
-.a-button-effect:hover{
-  background: #03e9f4;
-  color: #050801;
-  box-shadow: 0 0 5px #03e9f4,
-  0 0 25px #03e9f4,
-  0 0 50px #03e9f4,
-  0 0 200px #03e9f4;
+/*.a-button-effect:hover{*/
+/*  background: #03e9f4;*/
+/*  color: #050801;*/
+/*  box-shadow: 0 0 5px #03e9f4,*/
+/*  0 0 25px #03e9f4,*/
+/*  0 0 50px #03e9f4,*/
+/*  0 0 200px #03e9f4;*/
+/*}*/
+/*.a-button-effect:nth-child(1){*/
+/*  filter: hue-rotate(270deg);*/
+/*}*/
+/*.a-button-effect:nth-child(2){*/
+/*  filter: hue-rotate(110deg);*/
+/*}*/
+/*.a-button-effect span{*/
+/*  position: absolute;*/
+/*  display: block;*/
+/*}*/
+/*.a-button-effect span:nth-child(1){*/
+/*  top: 0;*/
+/*  left: 0;*/
+/*  width: 100%;*/
+/*  height: 2px;*/
+/*  background: linear-gradient(90deg,transparent,#03e9f4);*/
+/*  animation: animate1 1s linear infinite;*/
+/*}*/
+/*@keyframes animate1{*/
+/*  0%{*/
+/*    left: -100%;*/
+/*  }*/
+/*  50%,100%{*/
+/*    left: 100%;*/
+/*  }*/
+/*}*/
+/*.a-button-effect span:nth-child(2){*/
+/*  top: -100%;*/
+/*  right: 0;*/
+/*  width: 2px;*/
+/*  height: 100%;*/
+/*  background: linear-gradient(180deg,transparent,#03e9f4);*/
+/*  animation: animate2 1s linear infinite;*/
+/*  animation-delay: 0.25s;*/
+/*}*/
+/*@keyframes animate2{*/
+/*  0%{*/
+/*    top: -100%;*/
+/*  }*/
+/*  50%,100%{*/
+/*    top: 100%;*/
+/*  }*/
+/*}*/
+/*.a-button-effect span:nth-child(3){*/
+/*  bottom: 0;*/
+/*  right: 0;*/
+/*  width: 100%;*/
+/*  height: 2px;*/
+/*  background: linear-gradient(270deg,transparent,#03e9f4);*/
+/*  animation: animate3 1s linear infinite;*/
+/*  animation-delay: 0.50s;*/
+/*}*/
+/*@keyframes animate3{*/
+/*  0%{*/
+/*    right: -100%;*/
+/*  }*/
+/*  50%,100%{*/
+/*    right: 100%;*/
+/*  }*/
+/*}*/
 
-}
-.a-button-effect:nth-child(1){
-  filter: hue-rotate(270deg);
-}
-.a-button-effect:nth-child(2){
-  filter: hue-rotate(110deg);
-}
-.a-button-effect span{
-  position: absolute;
-  display: block;
-}
-.a-button-effect span:nth-child(1){
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 2px;
-  background: linear-gradient(90deg,transparent,#03e9f4);
-  animation: animate1 1s linear infinite;
-}
-@keyframes animate1{
-  0%{
-    left: -100%;
-  }
-  50%,100%{
-    left: 100%;
-  }
-}
-.a-button-effect span:nth-child(2){
-  top: -100%;
-  right: 0;
-  width: 2px;
-  height: 100%;
-  background: linear-gradient(180deg,transparent,#03e9f4);
-  animation: animate2 1s linear infinite;
-  animation-delay: 0.25s;
-}
-@keyframes animate2{
-  0%{
-    top: -100%;
-  }
-  50%,100%{
-    top: 100%;
-  }
-}
-.a-button-effect span:nth-child(3){
-  bottom: 0;
-  right: 0;
-  width: 100%;
-  height: 2px;
-  background: linear-gradient(270deg,transparent,#03e9f4);
-  animation: animate3 1s linear infinite;
-  animation-delay: 0.50s;
-}
-@keyframes animate3{
-  0%{
-    right: -100%;
-  }
-  50%,100%{
-    right: 100%;
-  }
-}
 
-
-.a-button-effect span:nth-child(4){
-  bottom: -100%;
-  left: 0;
-  width: 2px;
-  height: 100%;
-  background: linear-gradient(360deg,transparent,#03e9f4);
-  animation: animate4 1s linear infinite;
-  animation-delay: 0.75s;
-}
-@keyframes animate4{
-  0%{
-    bottom: -100%;
-  }
-  50%,100%{
-    bottom: 100%;
-  }
-}
+/*.a-button-effect span:nth-child(4){*/
+/*  bottom: -100%;*/
+/*  left: 0;*/
+/*  width: 2px;*/
+/*  height: 100%;*/
+/*  background: linear-gradient(360deg,transparent,#03e9f4);*/
+/*  animation: animate4 1s linear infinite;*/
+/*  animation-delay: 0.75s;*/
+/*}*/
+/*@keyframes animate4{*/
+/*  0%{*/
+/*    bottom: -100%;*/
+/*  }*/
+/*  50%,100%{*/
+/*    bottom: 100%;*/
+/*  }*/
+/*}*/
 
 
 /*background body*/
 
-.NeonLightText {
-  position: relative;
-  /*font-size: 6em;*/
-  color: #fff;
-  letter-spacing: 2px;
-  text-shadow: 0 0 20px #f000ff;
-}
-.NeonLightText::after {
-  content: 'Neon Light Text';
-  position: absolute;
-  top: 0;
-  left: 0;
-  color: #f000ff;
-  filter: blur(15px);
-  z-index: -1;
-}
-.NeonLightText::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: #f000ff;
-  opacity: .5;
-  filter: blur(40px);
-  z-index: -2;
-}
+/*.NeonLightText {*/
+/*  position: relative;*/
+/*  !*font-size: 6em;*!*/
+/*  color: white;*/
+/*  letter-spacing: 2px;*/
+/*  text-shadow: 0 0 20px #f000ff;*/
+/*}*/
+/*.NeonLightText::after {*/
+/*  content: 'Neon Light Text';*/
+/*  position: absolute;*/
+/*  top: 0;*/
+/*  left: 0;*/
+/*  color: #f000ff;*/
+/*  filter: blur(15px);*/
+/*  z-index: -1;*/
+/*}*/
+/*.NeonLightText::before {*/
+/*  content: '';*/
+/*  position: absolute;*/
+/*  top: 0;*/
+/*  left: 0;*/
+/*  width: 100%;*/
+/*  height: 100%;*/
+/*  background: #f000ff;*/
+/*  opacity: .5;*/
+/*  filter: blur(40px);*/
+/*  z-index: -2;*/
+/*}*/

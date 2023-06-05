@@ -4,6 +4,7 @@ import {Col, Row, Tabs} from "antd";
 import {useState} from "react";
 import BXH_22 from "./BXH_22";
 import BXH_44 from "./BXH_44";
+import BXH_SOLO from "./BXH_SOLO";
 
 const XemHang = () => {
     const [key, setkey] = useState('BXH_CA_NHAN')
@@ -15,6 +16,11 @@ const XemHang = () => {
             key: 'BXH_CA_NHAN',
             label: `BXH Cá Nhân`,
             children: <BangXepHangCaNhan  />,
+        },
+        {
+            key: 'BXH_SOLO',
+            label: `BXH SOLO`,
+            children: <BXH_SOLO type={key}/>,
         },
         {
             key: 'BXH_22',
