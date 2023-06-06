@@ -289,7 +289,7 @@ const QuanLyEvent = () =>{
                     </div>
                     {
                         data &&
-                        <Table bordered rowKey={obj => obj.id} columns={columns} dataSource={data?.content} pagination={{
+                        <Table className={'table-responsive-sm'} bordered rowKey={obj => obj.id} columns={columns} dataSource={data?.content} pagination={{
                             position: ["bottomCenter"],
                             itemRender: itemRender,
                             current: paging.page + 1,

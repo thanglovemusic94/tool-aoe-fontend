@@ -70,7 +70,7 @@ const DiemTrungBinhDetail = ({data}) => {
                     icon={<></>}
                     title={()=> <div className={'text-center'}><b className={'text-danger '}>{data.inGame} ____  {data.hang} ____ {data.diemtrungbinh}</b></div>}
                     description={()=> detail.length > 0 &&
-                        <Table pagination={false} bordered rowKey={detail.user_review_id} columns={columnsDetail} dataSource={detail} />
+                        <Table className={'table-responsive-sm'} pagination={false} bordered rowKey={detail.user_review_id} columns={columnsDetail} dataSource={detail} />
                     }
                 >
                     <Space size="middle">

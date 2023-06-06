@@ -148,7 +148,7 @@ const DanhSachDangKyGiai = (props) => {
             </h3>
             {
                 data &&
-                <Table bordered rowKey={obj => obj.inGame} columns={columns} dataSource={data} pagination={{
+                <Table className={'table-responsive-sm'} bordered rowKey={obj => obj.inGame} columns={columns} dataSource={data} pagination={{
                     position: ["bottomCenter"],
                     itemRender: itemRender,
                     current: paging.page + 1,

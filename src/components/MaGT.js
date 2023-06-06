@@ -93,7 +93,7 @@ const MaGT = () => {
             <div> <Button className={"btn-primary btn-sm text-white mb-3"}  loading={loadings} onClick={onCickAddCode} icon={<LoadingIcon />}>Tạo Mã Mới</Button></div>
             {
                 data &&
-                <Table bordered rowKey={obj => obj.user_review_id} columns={columns} dataSource={data?.content} pagination={{
+                <Table className={'table-responsive-sm'} bordered rowKey={obj => obj.user_review_id} columns={columns} dataSource={data?.content} pagination={{
                     position: ["bottomCenter"],
                     itemRender: itemRender,
                     current: paging.page + 1,
