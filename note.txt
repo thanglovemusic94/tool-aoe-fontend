@@ -1,0 +1,3 @@
+deploy github
+
+https://dev.to/iamndeleva/deploying-a-react-application-to-amazon-s3-and-github-actions-4558

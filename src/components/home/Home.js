@@ -10,7 +10,7 @@ import ModalThongTinGiai from "./ModalThongTinGiai";
 
 const Home = () => {
     const history = useHistory();
-    const { isLoggedIn } = useSelector(state => state.auth.user);
+    const { isLoggedIn } = useSelector(state => state.auth);
 
     const Context = React.createContext({
         name: 'Default',
