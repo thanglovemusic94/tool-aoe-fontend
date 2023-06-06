@@ -9,9 +9,10 @@ import {routes} from "../../routes";
 
 
 const loading = (
-    <div className="spinner-border " role="status">
-        <p className="sr-only text-center">Loading...</p>
-    </div>
+    <></>
+    // <div className="spinner-border " role="status">
+    //     <p className="sr-only text-center">Loading...</p>
+    // </div>
 )
 
 export default function TheBody() {
@@ -19,7 +20,7 @@ export default function TheBody() {
     // console.log(isLogined)
     return (
 
-            <div className="container-fluid min-vh-100">
+            <div className="container-fluid min-vh-100 ">
                 <React.Suspense fallback={loading}>
                     {routes.map((item, index) => {
                         // if (item.path === '/write-inquiry' && isLogined === false){

@@ -12,6 +12,7 @@ import {clearMessage} from "./actions/message";
 // import AuthVerify from "./common/AuthVerify";
 import EventBus from "./common/EventBus";
 import TheLayout from "./components/layout/TheLayout";
+import {Space, Spin} from "antd";
 
 
 const App = () => {
@@ -53,7 +54,9 @@ const App = () => {
 
     return (
         <div>
-
+            <div id={'hi'} className={'d-none'} size="middle">
+                <Spin className={'center-div'} size="large" />
+            </div>
 
             <div >
                 <Switch>

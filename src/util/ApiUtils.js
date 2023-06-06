@@ -1,6 +1,7 @@
 import axios from "axios";
 import {stringify} from "./QueryUtil";
 import {localStorageManager} from "../common/LocalStorageManager";
+import {clearMessage} from "../actions/message";
 
 
 export const API = axios.create({
@@ -12,7 +13,10 @@ export const API = axios.create({
 })
 
     API.interceptors.request.use(
+
     config => {
+        document.getElementById('hi').classList.add('loading-indicator');
+
         const tokenString = localStorageManager.getPayloadToken();
         if (tokenString) {
             config.headers.Authorization = `Bearer ${tokenString}`;
@@ -24,6 +28,12 @@ export const API = axios.create({
 
 API.interceptors.response.use(
     response => {
+        document.getElementById('hi').classList.remove('loading-indicator');
+        // setTimeout(() => {
+        //     document.getElementById('hi').classList.remove('loading-indicator');
+        // }, 40000);
+
+
         return response
     },
     async (err) => {

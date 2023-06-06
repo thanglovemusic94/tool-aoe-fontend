@@ -70,7 +70,7 @@ const Home = () => {
   return (
 
       <div className="row">
-          <div className="col-md-2 col-sm-12 mx-auto">
+          <div className="col-md-3 col-sm-12 mx-auto">
               <div  >
 
 
@@ -163,8 +163,8 @@ const Home = () => {
 
               </div>
           </div>
-          <div className="col-md-10 col-sm-12">
-              <div  className={'text-center mt-5'}>
+          <div className="col-md-9 col-sm-12">
+              <div  className={'text-center mt-md-5'}>
                   <XemHang />
               </div>
           </div>

@@ -115,7 +115,7 @@ const BangXepHangCaNhan = () => {
             <h3 className={'text-center my-3'}>Bảng Xếp Hạng Cá Nhân</h3>
             {
                 data &&
-                <Table  bordered rowKey={obj => obj.user_review_id} columns={columns} dataSource={data?.content} pagination={{
+                <Table  className={'table-responsive-sm'} bordered rowKey={obj => obj.user_review_id} columns={columns} dataSource={data?.content} pagination={{
                     position: ["bottomCenter"],
                     itemRender: itemRender,
                     current: paging.page + 1,
