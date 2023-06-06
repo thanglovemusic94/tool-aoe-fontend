@@ -9,6 +9,7 @@ import EventService from "../services/event.service";
 const DanhSachDangKyGiai = (props) => {
 
     const statusDk = props.location.state?.statusDk
+    const statusDk2 = props.location.state?.statusDk2
 
     const { message } = useSelector(state => state.message);
     const dispatch = useDispatch();
@@ -18,7 +19,13 @@ const DanhSachDangKyGiai = (props) => {
             dispatch(setMessage(`Đăng kí giải thành công`))
             setTimeout(() => {
                 dispatch(clearMessage())
-            }, 3000);
+            }, 4000);
+        }
+        if (statusDk2){
+            dispatch(setMessage(`Bạn đã đăng ký giải trước đó rồi`))
+            setTimeout(() => {
+                dispatch(clearMessage())
+            }, 4000);
         }
 
     }, [statusDk]);

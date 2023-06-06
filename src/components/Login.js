@@ -1,4 +1,4 @@
-import React, {useRef, useState} from "react";
+import React, {useMemo, useRef, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {Link, useHistory} from 'react-router-dom';
 
@@ -9,6 +9,7 @@ import CheckButton from "react-validation/build/button";
 import {login} from "../actions/auth";
 import {setMessage} from "../actions/message";
 import EventService from "../services/event.service";
+import {notification} from "antd";
 
 const required = (value) => {
   if (!value) {
@@ -57,17 +58,26 @@ const Login = (props) => {
       dispatch(login(inGame, password))
         .then(() => {
           if (checkDkiGiai){
+            const idEvent = props.location.state?.id
             EventService.registerGiaiDau(eventCode).then(res =>{
-              const idEvent = props.location.state?.id
+
               if (res.status == 200){
                 history.push("/danh-sach-dang-ky-giai", {statusDk: true, id: idEvent})
               }
-            }).catch(err => console.log(err))
+            }).catch(err => {
+              if(err.response.status == 400){
+                // success(err.response.data);
+                openNotification('bottomLeft', err.response.data)
+                history.push("/danh-sach-dang-ky-giai", {statusDk2: true, id: idEvent})
+              }
+            })
+
           }else {
             history.push("/cham-diem")
+            window.location.reload();
           }
 
-          // window.location.reload();
+
         })
         .catch(() => {
           dispatch(setMessage("Lỗi, vui lòng đăng nhập lại "))
@@ -80,9 +90,24 @@ const Login = (props) => {
     }
   };
 
-  // if (isLoggedIn) {
-  //   history.push("/profile")
-  // }
+  const Context = React.createContext({
+    name: 'Default',
+  });
+  const contextValue = useMemo(
+      () => ({
+        name: 'Ant Design',
+      }),
+      [],
+  );
+  const [api, contextHolder] = notification.useNotification();
+  const openNotification = (placement, data) => {
+    api.info({
+      message: data,
+      // description: <Context.Consumer>{({ name }) => `Hello, ${name}!`}</Context.Consumer>,
+      placement,
+    });
+  };
+
 
   return (
     <div className="col-md-12">
@@ -160,6 +185,10 @@ const Login = (props) => {
           <CheckButton style={{ display: "none" }} ref={checkBtn} />
         </Form>
       </div>
+      <Context.Provider value={contextValue}>
+        {contextHolder}
+
+      </Context.Provider>
     </div>
   );
 };

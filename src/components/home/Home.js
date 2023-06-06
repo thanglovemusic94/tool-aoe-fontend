@@ -10,7 +10,7 @@ import ModalThongTinGiai from "./ModalThongTinGiai";
 
 const Home = () => {
     const history = useHistory();
-    const { isLoggedIn } = useSelector(state => state.auth);
+    const { isLoggedIn } = useSelector(state => state.auth.user);
 
     const Context = React.createContext({
         name: 'Default',
@@ -41,7 +41,7 @@ const Home = () => {
             }).catch(err => {
                 if(err.response.status == 400){
                     // success(err.response.data);
-                    openNotification('bottomLeft', err.response.data)
+                    openNotification('bottomLeft', err.response.data);
                 }
             })
         }else {
