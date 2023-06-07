@@ -108,7 +108,7 @@ const BangXepHang = ({xh}) => {
 
             }
         );
-    }, [paging]);
+    }, [paging, xh]);
 
     return (
         <div className="container">

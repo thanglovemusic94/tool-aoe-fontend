@@ -16,12 +16,12 @@ const XemHang = () => {
         {
             key: 'BXH_SOLO',
             label: `BXH SOLO`,
-            children: <BangXepHang type={key} xh={'solo'}/>,
+            children: <BangXepHang type={key} xh={'solo'} />,
         },
         {
             key: 'BXH_22',
             label: `BXH 22`,
-            children: <BangXepHang type={key} xh={'xh22'}/>,
+            children: <BangXepHang type={key} xh={'xh22'} />
         },
         {
             key: 'BXH_CA_NHAN',
