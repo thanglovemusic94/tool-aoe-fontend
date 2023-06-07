@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import UserService from "../services/user.service";
 import {clearMessage, setMessage} from "../actions/message";
-import {Table, Tag} from "antd";
+import {Select, Table, Tag} from "antd";
 import {Link} from "react-router-dom";
 import EventService from "../services/event.service";
 
@@ -32,7 +32,9 @@ const DanhSachDangKyGiai = (props) => {
 
 
 
-
+    const handleChange = (value) => {
+        console.log(`selected ${value}`);
+    };
     const columns = [
         {
             title: 'STT',
@@ -56,12 +58,23 @@ const DanhSachDangKyGiai = (props) => {
             dataIndex: 'statusDongTien',
             key: 'statusDongTien',
             render: (status) => {
-                // if (status === true){
-                //     return <Tag color={'green-inverse'}> đã đóng </Tag>
-                // }else {
-                //     return <Tag color={'red'} > chưa đóng </Tag>
-                // }
-                return <Tag color={'red'} > chưa đóng </Tag>
+
+
+                return (
+                    <>
+                        <Select
+                            disabled
+                            size={"small"}
+                            defaultValue={status}
+                            style={{ width: 120 }}
+                            onChange={handleChange}
+                            options={[
+                                { value: false, label: 'chưa đóng'},
+                                { value: true, label: 'đã đóng'  },
+                            ]}
+                        />
+                    </>
+                )
             }
         },
         {

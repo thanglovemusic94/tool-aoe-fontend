@@ -2,7 +2,7 @@ import React, {useEffect, useMemo, useState} from "react";
 
 import {useHistory} from "react-router-dom";
 import XemHang from "../XemHang";
-import {Modal, notification, Space} from "antd";
+import {Modal, notification} from "antd";
 import {useSelector} from "react-redux";
 import EventService from "../../services/event.service";
 import ModalThongTinGiai from "./ModalThongTinGiai";
@@ -67,7 +67,7 @@ const Home = () => {
     }, []);
 
     const [isModalOpen, setIsModalOpen] = useState(false);
-    console.log(dataEventNew)
+
   return (
 
       <div className="row">
@@ -169,6 +169,7 @@ const Home = () => {
                   <XemHang />
               </div>
           </div>
+
       </div>
   );
 };

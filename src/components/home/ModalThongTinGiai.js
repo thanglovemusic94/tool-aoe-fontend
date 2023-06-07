@@ -1,4 +1,4 @@
-import {Collapse, Input, QRCode, Space, theme} from "antd";
+import {Collapse, Input, Modal, QRCode, Space, Table, theme} from "antd";
 import {CaretRightOutlined} from "@ant-design/icons";
 import React from "react";
 
@@ -43,6 +43,7 @@ const  ModalThongTinGiai = ({data}) => {
 
                 </Space>
             </Panel>
+
         </Collapse>
     );
 }

@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import UserService from "../services/user.service";
-import {Button, Popconfirm, Space, Table, Tag} from "antd";
+import {Button, Modal, Popconfirm, Space, Table, Tag} from "antd";
 import ThaoTacTay from "./type/ThaoTacTay";
 
 const DiemTrungBinhDetail = ({data}) => {
@@ -60,25 +60,41 @@ const DiemTrungBinhDetail = ({data}) => {
         console.log(id)
     }
 
+
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const showModal = (id) => {
+        setIsModalOpen(true);
+        UserService.getDiemTrungBinh(id).then(
+            (response) => {
+                setDetail(response.data);
+            },
+            (error) => {
+                const _content =
+                    (error.response && error.response.data) ||
+                    error.message ||
+                    error.toString();
+
+            }
+        );
+    };
+
+    const handleOk = () => {
+        setIsModalOpen(false);
+    };
+
+    const handleCancel = () => {
+        setIsModalOpen(false);
+    };
     return (
         <>
 
+            <Modal title={<div className={'text-center'}><b className={'text-danger '}>{data.inGame} ____  {data.hang} ____ {data.diemtrungbinh}</b></div>} open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
+                <Table className={'table-responsive-sm'} pagination={false} bordered rowKey={detail.user_review_id} columns={columnsDetail} dataSource={detail} />
+            </Modal>
 
-                <Popconfirm
-                    placement="right"
-                    showCancel={false}
-                    icon={<></>}
-                    title={()=> <div className={'text-center'}><b className={'text-danger '}>{data.inGame} ____  {data.hang} ____ {data.diemtrungbinh}</b></div>}
-                    description={()=> detail.length > 0 &&
-                        <Table className={'table-responsive-sm'} pagination={false} bordered rowKey={detail.user_review_id} columns={columnsDetail} dataSource={detail} />
-                    }
-                >
-                    <Space size="middle">
-                        <Button size={'small'} type="primary" onClick={()=>showDetail(data.user_review_id)}>Xem chi tiết</Button>
-                    </Space>
-                </Popconfirm>
-
-
+            <Space size="middle">
+                <Button size={'small'} type="primary" onClick={()=>showModal(data.user_review_id)}>Xem chi tiết</Button>
+            </Space>
         </>
     )
 }
