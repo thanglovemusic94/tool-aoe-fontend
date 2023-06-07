@@ -1,38 +1,33 @@
-import ThaoTacTay from "./type/ThaoTacTay";
-import BangXepHangCaNhan from "./BangXepHangCaNhan";
+import BangXepHang from "./BangXepHang";
 import {Col, Row, Tabs} from "antd";
 import {useState} from "react";
-import BXH_22 from "./BXH_22";
-import BXH_44 from "./BXH_44";
-import BXH_SOLO from "./BXH_SOLO";
 
 const XemHang = () => {
-    const [key, setkey] = useState('BXH_CA_NHAN')
+    const [key, setkey] = useState('BXH_44')
     const onChange = (key) => {
         setkey(key)
     };
     const items = [
         {
-            key: 'BXH_CA_NHAN',
-            label: `BXH Cá Nhân`,
-            children: <BangXepHangCaNhan  />,
+            key: 'BXH_44',
+            label: `BXH 44`,
+            children: <BangXepHang type={key} xh={'xh44'} />,
         },
         {
             key: 'BXH_SOLO',
             label: `BXH SOLO`,
-            children: <BXH_SOLO type={key}/>,
+            children: <BangXepHang type={key} xh={'solo'}/>,
         },
         {
             key: 'BXH_22',
             label: `BXH 22`,
-            children: <BXH_22 type={key}/>,
+            children: <BangXepHang type={key} xh={'xh22'}/>,
         },
         {
-            key: 'BXH_44',
-            label: `BXH 44`,
-            children: <BXH_44 type={key} />,
-        },
-
+            key: 'BXH_CA_NHAN',
+            label: `BXH Cá Nhân`,
+            children: <BangXepHang type={key} xh={'null'} />,
+        }
 
     ];
     return (

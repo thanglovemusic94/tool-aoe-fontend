@@ -42,6 +42,7 @@ const Home = () => {
                 if(err.response.status == 400){
                     // success(err.response.data);
                     openNotification('bottomLeft', err.response.data);
+                    history.push("/danh-sach-dang-ky-giai", {statusDk2: true, id: eventData.id})
                 }
             })
         }else {

@@ -4,7 +4,8 @@ import React, {useEffect, useState} from "react";
 import {Link} from "react-router-dom";
 import UserService from "../services/user.service";
 
-const BXH_SOLO = () => {
+const BangXepHang = ({xh}) => {
+
     const columns = [
         {
             title: 'Vị Trí Top',
@@ -56,7 +57,6 @@ const BXH_SOLO = () => {
             key: 'diemtrungbinh',
             render: (text)  => <b>{text}</b>,
             sorter: (a, b) => a.diemtrungbinh - b.diemtrungbinh,
-            // sortOrder: sortedInfo.columnKey === 'diemtrungbinh' ? sortedInfo.order : null,
         },
         // {
         //     title: 'Số người chấm điểm',
@@ -74,7 +74,7 @@ const BXH_SOLO = () => {
 
     const [paging, setPaging] = useState({
         page: 0,
-        size: 100,
+        size: 50,
         // sort: ['id,DESC']
     });
 
@@ -96,7 +96,7 @@ const BXH_SOLO = () => {
     };
 
     useEffect(() => {
-        UserService.getAll(paging, "solo").then(
+        UserService.getAll(paging, xh).then(
             (response) => {
                 setData(response.data);
             },
@@ -112,7 +112,7 @@ const BXH_SOLO = () => {
 
     return (
         <div className="container">
-            <h3 className={'text-center my-3'}>Bảng Xếp Hạng SOLO</h3>
+            <h3 className={'text-center my-3'}>Bảng Xếp Hạng Cá Nhân</h3>
             {
                 data &&
                 <Table  className={'table-responsive-sm'} bordered rowKey={obj => obj.user_review_id} columns={columns} dataSource={data?.content} pagination={{
@@ -129,8 +129,7 @@ const BXH_SOLO = () => {
             }
 
         </div>
-    )
-
+  )
 }
 
-export default BXH_SOLO
+export default BangXepHang
