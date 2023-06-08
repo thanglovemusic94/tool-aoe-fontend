@@ -2,12 +2,13 @@ import React, {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import UserService from "../services/user.service";
 import {clearMessage, setMessage} from "../actions/message";
-import {Select, Table, Tag} from "antd";
+import {Badge, Button, Popconfirm, Select, Table, Tag} from "antd";
 import {Link} from "react-router-dom";
 import EventService from "../services/event.service";
 
 const DanhSachDangKyGiai = (props) => {
-
+    const { user} = useSelector((state) => state.auth);
+    const isAdmin = localStorage.getItem("role") ;
     const statusDk = props.location.state?.statusDk
     const statusDk2 = props.location.state?.statusDk2
 
@@ -31,9 +32,10 @@ const DanhSachDangKyGiai = (props) => {
     }, [statusDk]);
 
 
+    console.log(user)
 
-    const handleChange = (value) => {
-        console.log(`selected ${value}`);
+    const handleChange = (value, id) => {
+        console.log(`selected ${value} - ${id}`);
     };
     const columns = [
         {
@@ -57,25 +59,20 @@ const DanhSachDangKyGiai = (props) => {
             title: 'Đóng Tiền Tham Gia',
             dataIndex: 'statusDongTien',
             key: 'statusDongTien',
-            render: (status) => {
+            render: (_, record) =>
+                <Select
+                    bordered={false}
+                    size={"small"}
+                    defaultValue={record.statusDongTien}
+                    style={{ width: 120 }}
+                    disabled={(isAdmin && isAdmin === "ROLE_ADMIN") ? false : true}
+                    onChange={(e) => handleChange(e, record.id)}
+                    options={[
+                        { value: 0, label: <span className={'badge badge-danger'}>chưa đóng</span>},
+                        { value: 1, label: <span className={'badge badge-success'}>đã đóng</span>  },
+                    ]}
+                />
 
-
-                return (
-                    <>
-                        <Select
-                            disabled
-                            size={"small"}
-                            defaultValue={status}
-                            style={{ width: 120 }}
-                            onChange={handleChange}
-                            options={[
-                                { value: false, label: 'chưa đóng'},
-                                { value: true, label: 'đã đóng'  },
-                            ]}
-                        />
-                    </>
-                )
-            }
         },
         {
             title: 'Số tiền đã đóng',
