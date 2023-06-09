@@ -42,7 +42,44 @@ const DanhSachDangKyGiai = (props) => {
             title: 'STT',
             dataIndex: 'stt',
             key: 'stt',
-            render: (text) => <b>{text}</b>
+            render: (text) => <b>{text}</b>,
+            sorter: (a, b) => a.stt - b.stt,
+        },
+        {
+            title: 'Hạng 44',
+            dataIndex: 'hang',
+            key: 'hang',
+            render: (text) => {
+                if (text === 'A ') {
+                    return <Tag color={'red'}>A</Tag>
+                }else if (text === 'A-'){
+                    return <Tag color={'red-inverse'}>A-</Tag>
+                }else if (text === 'B'){
+                    return <Tag color={'green'}>B</Tag>
+                }else if (text === 'B-'){
+                    return <Tag color={'green-inverse'}>B-</Tag>
+                }else if (text === 'C'){
+                    return <Tag color={'cyan'}>C</Tag>
+                }else if (text === 'C-'){
+                    return <Tag color={'cyan-inverse'}>C-</Tag>
+                }else if (text === 'D'){
+                    return <Tag color={'purple'}>D</Tag>
+                }else if (text === 'D-'){
+                    return <Tag color={'purple-inverse'}>D-</Tag>
+                }else return <Tag color={'default'}>{`chưa được tính hạng`}</Tag>
+            },
+            sorter: (a, b) => {
+                if (a.hang > b.hang) return -1;
+                if (a.hang < b.hang) return 1;
+                return 0;
+            },
+        },
+        {
+            title: 'Điểm Trung Bình',
+            dataIndex: 'diemTrungBinh',
+            key: 'diemTrungBinh',
+            render: (text) => <b>{text}</b>,
+            sorter: (a, b) => a.diemTrungBinh - b.diemTrungBinh,
         },
         {
             title: 'In Game',
@@ -71,7 +108,8 @@ const DanhSachDangKyGiai = (props) => {
                         { value: 0, label: <span className={'badge badge-danger'}>chưa đóng</span>},
                         { value: 1, label: <span className={'badge badge-success'}>đã đóng</span>  },
                     ]}
-                />
+                />,
+            sorter: (a, b) => a.statusDongTien - b.statusDongTien,
 
         },
         {
