@@ -2,7 +2,7 @@ import React, {useEffect, useMemo, useState} from "react";
 
 import {useHistory} from "react-router-dom";
 import XemHang from "../XemHang";
-import {Modal, notification} from "antd";
+import {Modal, notification, Space} from "antd";
 import {useSelector} from "react-redux";
 import EventService from "../../services/event.service";
 import ModalThongTinGiai from "./ModalThongTinGiai";
@@ -72,7 +72,7 @@ const Home = () => {
 
       <div className="row">
           <div className="col-md-3 col-sm-12 mx-auto">
-              <div  >
+              <div >
 
 
                   <div className={'d-flex justify-content-center'}>
@@ -91,11 +91,11 @@ const Home = () => {
 
                   </div>
                   <div >
-                      <div  className={'py-3 mt-5 text-center block ' } style={{ minHeight: "300px", color: "red", backgroundImage: "url(" +`https://c4.wallpaperflare.com/wallpaper/71/307/812/age-of-empires-ii-hd-wallpaper-preview.jpg` +")", backgroundSize: "cover"}} >
-                          <h3 className={'text-white NeonLightText'}>Thông tin các giải đấu</h3>
+                      <div  className={'py-3 mt-5 text-center block position-relative' } style={{ minHeight: "300px", color: "red", backgroundImage: "url(" +`https://c4.wallpaperflare.com/wallpaper/71/307/812/age-of-empires-ii-hd-wallpaper-preview.jpg` +")", backgroundSize: "cover"}} >
+                          {/*<h3 className={'text-white NeonLightText'}>Thông tin các giải đấu</h3>*/}
                           {dataEventNew ?
-                              <h4 className={'NeonLightText'}>
-                                  {dataEventNew.title}
+                              <div className={'position-absolute w-100'} style={{bottom: 20}} >
+                                  <h4>{dataEventNew.title}</h4>
                                   <div className={'w-50 mx-auto'}>
                                       <button className={'btn btn-sm btn-danger NeonLightText a-button-effect  w-100 mt-3'} onClick={()=>setIsModalOpen(true)}>
                                           <span></span>
@@ -110,19 +110,19 @@ const Home = () => {
 
                                   </div>
 
-                                  <div className={'w-50 mx-auto'}>
+                                  {/*<div className={'w-50 mx-auto'}>*/}
 
-                                      <Context.Provider value={contextValue}>
-                                          {contextHolder}
-                                          <button className={'btn btn-sm btn-danger NeonLightText a-button-effect w-100 mt-3'} onClick={()=>dangkygiaidau(dataEventNew)}>
-                                              <span></span>
-                                              <span></span>
-                                              <span></span>
-                                              <span></span>
-                                              Đăng Ký
-                                          </button>
-                                      </Context.Provider>
-                                  </div>
+                                  {/*    <Context.Provider value={contextValue}>*/}
+                                  {/*        {contextHolder}*/}
+                                  {/*        <button className={'btn btn-sm btn-danger NeonLightText a-button-effect w-100 mt-3'} onClick={()=>dangkygiaidau(dataEventNew)}>*/}
+                                  {/*            <span></span>*/}
+                                  {/*            <span></span>*/}
+                                  {/*            <span></span>*/}
+                                  {/*            <span></span>*/}
+                                  {/*            Đăng Ký*/}
+                                  {/*        </button>*/}
+                                  {/*    </Context.Provider>*/}
+                                  {/*</div>*/}
                                   <div className={'w-50 mx-auto'}>
                                       <button className={'btn btn-sm btn-danger NeonLightText a-button-effect  w-100 mt-3'} onClick={()=>history.push('/danh-sach-dang-ky-giai', {...dataEventNew})}>
                                           <span></span>
@@ -134,13 +134,15 @@ const Home = () => {
                                   </div>
 
 
+
+
                                   {/*<Panel header="Chuyển khoản - lệ phí tham gia giải đấu  " key="5" style={panelStyle}>*/}
                                   {/*    <Space direction="vertical" align="center">*/}
                                   {/*        <img width={200} height={300}  src="/bk.jpg"/>*/}
 
                                   {/*    </Space>*/}
                                   {/*</Panel>*/}
-                              </h4>:
+                              </div>:
 
                               <div className={'text-white'}>chưa có giải đấu nào</div>
 
@@ -157,6 +159,15 @@ const Home = () => {
                           {/*        allowFullScreen*/}
 
                           {/*></iframe>*/}
+
+                              <div className={'text-center'}>
+                                  <h1>Tài Trợ Giải Đấu 44 Hỗn Mã </h1>
+                                  <h5>Nội dung gửi:  <span style={{color: "red"}}>Tên InGame</span></h5>
+
+                                  <Space direction="vertical" align="center">
+                                      <img width={250} height={300}  src="/bk.jpg"/>
+                                  </Space>
+                              </div>
 
                       </div>
                   </div>

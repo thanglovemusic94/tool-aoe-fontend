@@ -67,15 +67,24 @@ const QuanLyEvent = () =>{
         {
             title: 'Hành Động',
             render: (_, i) =>
-                data?.content?.length >= 1 ? (
-                    <Popconfirm okType={"danger"}   title={() => {
-                        return `Bạn có chắc chắn muốn xóa sự kiện mã ${i.eventCode} này không`
-                    }}
-                                onConfirm={() => onClickDelete(i)}
-                    >
-                        <Button  size={'small'}  type={"primary"} >Xóa</Button>
-                    </Popconfirm>
-                ) : null,
+                data?.content?.length >= 1 ?
+                    <>
+                        <Button onClick={()=>{
+                            setIsModalOpen(true);
+                            setIdEdit(i.id);
+                            getDataEdit(i.id);
+                        }}  className={'mr-2'} size={'small'}  type={"primary"} >Sửa</Button>
+                        <Popconfirm okType={"danger"}   title={() => {
+                            return `Bạn có chắc chắn muốn xóa sự kiện mã ${i.eventCode} này không`
+                        }}
+                                    onConfirm={() => onClickDelete(i)}
+                        >
+                            <Button  size={'small'} color={'red'}  type={"default"} >Xóa</Button>
+                        </Popconfirm>
+
+                    </>
+                    :
+                    null,
         }
 
 
@@ -114,6 +123,10 @@ const QuanLyEvent = () =>{
     const onShowSizeChange = (current, pageSize) => {
         setPaging({...paging, page: current-1, size: pageSize});
     };
+
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [dataAdd, setDataAdd] = useState({})
+    const [idEdit, setIdEdit] = useState(null)
     useEffect(() => {
         EventService.getPageEvent(paging).then(
             (response) => {
@@ -127,34 +140,51 @@ const QuanLyEvent = () =>{
 
             }
         );
-    }, [paging]);
+
+    }, [paging, idEdit]);
 
 
-    const [isModalOpen, setIsModalOpen] = useState(false);
-    const [dataAdd, setDataAdd] = useState({})
 
-    const saveData = (data) => {
+    const getDataEdit = (id) => {
+
+           EventService.getEventById(id).then(
+               (response) => {
+                   setDataAdd(response.data)
+               },
+               (error) => {
+                   const _content =
+                       (error.response && error.response.data) ||
+                       error.message ||
+                       error.toString();
+
+               }
+           );
+
+    }
+
+    console.log("dataAdd", dataAdd)
+    const saveData = (data, idEdit) => {
         delete data.descriptionShort;
         delete data.term;
         delete data.note;
 
         const dataRegister = {...dataAdd, ...data}
-        EventService.register(dataRegister).then(
-            (response) => {
-                console.log(response)
-                setIsModalOpen(false)
-                setPaging({...paging})
-            },
-            (error) => {
-                const _content =
-                    (error.response && error.response.data) ||
-                    error.message ||
-                    error.toString();
-
-            }
-        );
+        // EventService.register(dataRegister).then(
+        //     (response) => {
+        //         console.log(response)
+        //         setIsModalOpen(false)
+        //         setPaging({...paging})
+        //     },
+        //     (error) => {
+        //         const _content =
+        //             (error.response && error.response.data) ||
+        //             error.message ||
+        //             error.toString();
+        //
+        //     }
+        // );
     }
-    console.log(dataAdd)
+
     return (
         <>
             <div className="container">
@@ -190,6 +220,7 @@ const QuanLyEvent = () =>{
                                 <Form.Item
                                     label="Tên Sự Kiện"
                                     name="title"
+                                    initialValue={Object.keys(dataAdd).length != 0 ?? dataAdd.title}
                                     rules={[
                                         {
                                             required: true,
@@ -204,6 +235,7 @@ const QuanLyEvent = () =>{
                                 <Form.Item
                                     label="Mô tả sự kiện "
                                     name="descriptionShort"
+
                                     rules={[
                                         {
                                             required: true,
@@ -216,6 +248,7 @@ const QuanLyEvent = () =>{
                                         <CKEditor
                                             id={'descriptionShort'}
                                             editor={ ClassicEditor }
+                                            data={Object.keys(dataAdd).length != 0 ?? dataAdd.descriptionShort}
                                             // data="<p>Hello from CKEditor 5!</p>"
                                             // onReady={ editor => {
                                             //     // You can store the "editor" and use when it is needed.

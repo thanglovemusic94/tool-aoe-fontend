@@ -36,10 +36,22 @@ export default function TheLayout() {
                 <TheHeader />
                 <TheBody />
                 <TheFooter />
-                <Modal centered={true} width={700} title={<h3 className={'text-center'}>Chuyển khoản - lệ phí tham gia giải đấu 50k/người</h3>} open={isModalOpen2} onOk={handleOk2} onCancel={handleCancel2}>
+                {/*<Modal centered={true} width={700} title={<h3 className={'text-center'}>Chuyển khoản - lệ phí tham gia giải đấu 50k/người</h3>} open={isModalOpen2} onOk={handleOk2} onCancel={handleCancel2}>*/}
+                {/*    <div className={'text-center'}>*/}
+                {/*        <h5>Nội dung gửi: </h5>*/}
+                {/*        <h4 style={{color: "red"}}>Tên InGame - Tên Zalo - Số tiền Tài trợ (nếu có)</h4>*/}
+                {/*        <Space direction="vertical" align="center">*/}
+                {/*            <img width={250} height={300}  src="/bk.jpg"/>*/}
+                {/*        </Space>*/}
+                {/*    </div>*/}
+                {/*</Modal>*/}
+
+
+                <Modal centered={true} width={500} open={isModalOpen2} onOk={handleOk2} onCancel={handleCancel2}>
                     <div className={'text-center'}>
-                        <h5>Nội dung gửi: </h5>
-                        <h4 style={{color: "red"}}>Tên InGame - Tên Zalo - Số tiền Tài trợ (nếu có)</h4>
+                        <h1>Tài Trợ Giải Đấu 44 Hỗn Mã </h1>
+                        <h5>Nội dung gửi:  <span style={{color: "red"}}>Tên InGame</span></h5>
+
                         <Space direction="vertical" align="center">
                             <img width={250} height={300}  src="/bk.jpg"/>
                         </Space>

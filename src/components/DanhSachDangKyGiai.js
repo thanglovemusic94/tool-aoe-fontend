@@ -5,6 +5,7 @@ import {clearMessage, setMessage} from "../actions/message";
 import {Badge, Button, Popconfirm, Select, Table, Tag} from "antd";
 import {Link} from "react-router-dom";
 import EventService from "../services/event.service";
+import format from "../util/Format";
 
 const DanhSachDangKyGiai = (props) => {
     const { user} = useSelector((state) => state.auth);
@@ -161,7 +162,36 @@ const DanhSachDangKyGiai = (props) => {
         setPaging({...paging, page: current-1, size: pageSize});
     };
 
+    const [nhaTaiTro, setNhaTaiTro] = useState([]);
+    const getNhaTaiTro = () =>{
+        EventService.getNhaTaiTro().then(
+            (response) => {
+                setNhaTaiTro(response.data);
+            },
+            (error) => {
+                const _content =
+                    (error.response && error.response.data) ||
+                    error.message ||
+                    error.toString();
 
+            }
+        );
+    }
+    const [tongTien, setTongTien] = useState();
+    const getTongTien = () =>{
+        EventService.getTongTien().then(
+            (response) => {
+                setTongTien(response.data);
+            },
+            (error) => {
+                const _content =
+                    (error.response && error.response.data) ||
+                    error.message ||
+                    error.toString();
+
+            }
+        );
+    }
     useEffect(() => {
         const idEvent = props.location.state?.id
 
@@ -177,7 +207,12 @@ const DanhSachDangKyGiai = (props) => {
 
             }
         );
+
+        getTongTien();
+        getNhaTaiTro()
     }, [paging]);
+
+    console.log(tongTien)
     return (
         <>
             {message &&
@@ -194,6 +229,31 @@ const DanhSachDangKyGiai = (props) => {
             <h3 className={'text-center'}>
                 Danh sách đăng kí
             </h3>
+            <div className={'d-flex justify-content-between'}>
+
+                <ul className={'font-weight-bold '}>
+                    <li >Tổng số tiền Đăng kí: <span className={'text-danger'}>{format.money(tongTien?.tongDaDongDong * 1000) } </span> </li>
+                    <li>Tổng số tiền Tài Trợ:  <span className={'text-danger'}>{format.money(tongTien?.tongHoTroGiai * 1000) }</span> </li>
+                    <li>Tổng: <span className={'text-danger'}>{format.money(tongTien?.tongTien * 1000) } </span> </li>
+
+                </ul>
+
+
+                        {nhaTaiTro.length &&
+                          <div>
+                                  <h4> Nhà tài trợ khác:</h4>
+                                  <ul className={'font-weight-bold'}>
+
+                                      {
+                                          nhaTaiTro.map((v, i) =>  <li key={i}>{v.ten}<span className={'text-danger'}> :  {format.money(v.soTien*1000) } </span> </li>)
+                                      }
+
+                                  </ul>
+
+                          </div>
+                        }
+
+            </div>
             {
                 data &&
                 <Table className={'table-responsive-sm'} bordered rowKey={obj => obj.inGame} columns={columns} dataSource={data} pagination={{

@@ -6,6 +6,14 @@ const EventService = {
         return API.post(URL_ADMIN + "/event", data)
     },
 
+    getEventById: function (id) {
+        return API.get(URL_ADMIN + "/event/" + id)
+    },
+
+    updateEvent: function (data, id) {
+        return API.put(URL_ADMIN + "/event/" + id, data)
+    },
+
     getEventNew: function () {
         return API.get("/home/event-new")
     },
@@ -26,7 +34,16 @@ const EventService = {
 
     getAllRegisterGiaiDau: function (eventId){
         return API.get( "/home/event-register/" + eventId)
+    },
+
+    getTongTien: function (){
+        return API.get( "/home/userevent/tongtien")
+    },
+
+    getNhaTaiTro: function (){
+        return API.get( "/home/nhataitro")
     }
+
 
 }
 
