@@ -93,8 +93,8 @@ const DanhSachDangKyGiai = (props) => {
         },
         {
             title: 'Số Điện Thoại',
-            dataIndex: 'SDT',
-            key: 'SDT',
+            dataIndex: 'sdt',
+            key: 'sdt',
             render: (text) => <b>{text}</b>
         },
         {
