@@ -32,9 +32,6 @@ const DanhSachDangKyGiai = (props) => {
 
     }, [statusDk]);
 
-
-    console.log(user)
-
     const handleChange = (value, id) => {
         console.log(`selected ${value} - ${id}`);
     };
@@ -87,10 +84,17 @@ const DanhSachDangKyGiai = (props) => {
             dataIndex: 'inGame',
             key: 'inGame',
             render: (text) => <b>{text}</b>
-        }, {
+        },
+        {
             title: 'Nick Zalo',
             dataIndex: 'nickZalo',
             key: 'nickZalo',
+            render: (text) => <b>{text}</b>
+        },
+        {
+            title: 'Số Điện Thoại',
+            dataIndex: 'SDT',
+            key: 'SDT',
             render: (text) => <b>{text}</b>
         },
         {
@@ -230,13 +234,14 @@ const DanhSachDangKyGiai = (props) => {
                 Danh sách đăng kí
             </h3>
             <div className={'d-flex justify-content-between'}>
+                {tongTien &&
+                    <ul className={'font-weight-bold '}>
+                        <li >Tổng số tiền Đăng kí: <span className={'text-danger'}>{format.money(tongTien?.tongDaDongDong * 1000) } </span> </li>
+                        <li>Tổng số tiền Tài Trợ:  <span className={'text-danger'}>{format.money(tongTien?.tongHoTroGiai * 1000) }</span> </li>
+                        <li>Tổng: <span className={'text-danger'}>{format.money(tongTien?.tongTien * 1000) } </span> </li>
+                    </ul>
+                }
 
-                <ul className={'font-weight-bold '}>
-                    <li >Tổng số tiền Đăng kí: <span className={'text-danger'}>{format.money(tongTien?.tongDaDongDong * 1000) } </span> </li>
-                    <li>Tổng số tiền Tài Trợ:  <span className={'text-danger'}>{format.money(tongTien?.tongHoTroGiai * 1000) }</span> </li>
-                    <li>Tổng: <span className={'text-danger'}>{format.money(tongTien?.tongTien * 1000) } </span> </li>
-
-                </ul>
 
 
                         {nhaTaiTro.length &&
