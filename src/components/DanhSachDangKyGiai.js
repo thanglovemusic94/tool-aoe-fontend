@@ -86,6 +86,12 @@ const DanhSachDangKyGiai = (props) => {
             render: (text) => <b>{text}</b>
         },
         {
+            title: 'Họ Và Tên',
+            dataIndex: 'hoVaTen',
+            key: 'hoVaTen',
+            render: (text) => <b>{text}</b>
+        },
+        {
             title: 'Nick Zalo',
             dataIndex: 'nickZalo',
             key: 'nickZalo',
