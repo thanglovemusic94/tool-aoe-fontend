@@ -38,6 +38,7 @@ API.interceptors.response.use(
     async (err) => {
         if (err.response && err.response.status === 401) {
             window.location.href = '/login';
+            localStorageManager.removeToken()
         }
         return Promise.reject(err);
     }
