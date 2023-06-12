@@ -1,8 +1,8 @@
 import {Modal, Popconfirm, Table} from "antd";
 import React, {useEffect, useState} from "react";
 import {Link} from "react-router-dom";
-import EventService from "../services/event.service";
-import {clearMessage, setMessage} from "../actions/message";
+import EventService from "../../services/event.service";
+import {clearMessage, setMessage} from "../../actions/message";
 import {useDispatch, useSelector} from "react-redux";
 
 import { Button, Form, Input } from 'antd';
@@ -169,20 +169,20 @@ const QuanLyEvent = () =>{
         delete data.note;
 
         const dataRegister = {...dataAdd, ...data}
-        // EventService.register(dataRegister).then(
-        //     (response) => {
-        //         console.log(response)
-        //         setIsModalOpen(false)
-        //         setPaging({...paging})
-        //     },
-        //     (error) => {
-        //         const _content =
-        //             (error.response && error.response.data) ||
-        //             error.message ||
-        //             error.toString();
-        //
-        //     }
-        // );
+        EventService.register(dataRegister).then(
+            (response) => {
+                console.log(response)
+                setIsModalOpen(false)
+                setPaging({...paging})
+            },
+            (error) => {
+                const _content =
+                    (error.response && error.response.data) ||
+                    error.message ||
+                    error.toString();
+
+            }
+        );
     }
 
     return (

@@ -10,7 +10,8 @@ const MaGT = React.lazy(() => import('./components/MaGT'))
 const User = React.lazy(() => import('./components/User'))
 const XemHang = React.lazy(() => import('./components/XemHang'))
 const DanhSachDangKyGiai = React.lazy(() => import('./components/DanhSachDangKyGiai'))
-const QuanLyEvent = React.lazy(() => import('./components/QuanLyEvent'))
+const QuanLyEvent = React.lazy(() => import('./components/event/QuanLyEvent'))
+
 
 export const routes = [
     {path: "/", exact: true, component: Home},

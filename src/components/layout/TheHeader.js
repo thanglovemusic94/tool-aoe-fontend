@@ -68,6 +68,12 @@ const TheHeader = () => {
                                 Trang Chủ
                             </Link>
                         </li>
+
+                        <li className="nav-item ">
+                            <Link to={"/xem-hang"} className="nav-link a-button-effect">
+                                Xem Hạng
+                            </Link>
+                        </li>
                         {
                             currentUser &&
                             <li className="nav-item">

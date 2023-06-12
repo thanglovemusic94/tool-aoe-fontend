@@ -6,6 +6,7 @@ import {Modal, notification, Space} from "antd";
 import {useSelector} from "react-redux";
 import EventService from "../../services/event.service";
 import ModalThongTinGiai from "./ModalThongTinGiai";
+import LichThiDau from "./LichThiDau";
 
 
 const Home = () => {
@@ -176,8 +177,8 @@ const Home = () => {
               </div>
           </div>
           <div className="col-md-9 col-sm-12">
-              <div  className={'text-center mt-md-5'}>
-                  <XemHang />
+              <div  className={'mt-md-5'}>
+                  <LichThiDau />
               </div>
           </div>
 
