@@ -43,13 +43,13 @@ const BangXepHang = ({xh}) => {
             key: 'inGame',
             render: (text) => <b>{text}</b>,
         },
-
-        {
-            title: 'Nick Zalo',
-            dataIndex: 'nickZalo',
-            key: 'nickZalo',
-            render: (text) => <b>{text}</b>,
-        },
+        //
+        // {
+        //     title: 'Nick Zalo',
+        //     dataIndex: 'nickZalo',
+        //     key: 'nickZalo',
+        //     render: (text) => <b>{text}</b>,
+        // },
 
         {
             title: 'Tổng Điểm',
