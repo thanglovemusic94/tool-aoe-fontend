@@ -65,8 +65,7 @@ const LichThiDau = () =>{
                                     children: <>
                                         <h5>13/06/2023</h5>
                                         <ul>
-                                            <li className={'font-weight-bold'}>21h - TEAM 7 vs TEAM 8</li>
-                                            <li className={'font-weight-bold'}>20h30h - TEAM 3 vs TEAM 4</li>
+                                            <li className={'font-weight-bold'}>21h - TEAM 7 vs TEAM 8 - (2 - 2)</li>
                                         </ul>
                                     </>
                                 },
@@ -76,6 +75,7 @@ const LichThiDau = () =>{
                                         <h5>14/06/2023</h5>
                                         <ul>
                                             <li className={'font-weight-bold'}>20h - TEAM 1 vs TEAM 2</li>
+                                            <li className={'font-weight-bold'}>20h30h - TEAM 3 vs TEAM 4</li>
                                             <li className={'font-weight-bold'}>21h - TEAM 7 vs TEAM 6</li>
                                         </ul>
                                     </>
