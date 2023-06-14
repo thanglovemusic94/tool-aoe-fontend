@@ -74,9 +74,11 @@ const LichThiDau = () =>{
                                     children: <>
                                         <h5>14/06/2023</h5>
                                         <ul>
-                                            <li className={'font-weight-bold'}>20h - TEAM 1 vs TEAM 2</li>
                                             <li className={'font-weight-bold'}>20h30h - TEAM 3 vs TEAM 4</li>
-                                            <li className={'font-weight-bold'}>21h - TEAM 7 vs TEAM 6</li>
+                                            <li className={'font-weight-bold'}>21h - TEAM 7 vs TEAM 5</li>
+                                            <li className={'font-weight-bold'}>21h - TEAM 8 vs TEAM 6</li>
+                                            <li className={'font-weight-bold'}>20h30h - TEAM 10 vs TEAM 11</li>
+                                            <li className={'font-weight-bold'}>20h - TEAM 1 vs TEAM 2 (cuối tuần đánh )</li>
                                         </ul>
                                     </>
                                 },
@@ -128,8 +130,8 @@ const LichThiDau = () =>{
                                     children: <>
                                         <h5>18/06/2023</h5>
                                         <ul>
-                                            <li className={'font-weight-bold'}>20h - TEAM 6 vs TEAM 8</li>
-                                            <li className={'font-weight-bold'}>21h - TEAM 7 vs TEAM 5</li>
+                                            <li className={'font-weight-bold'} style={{textDecoration: "line-through"}}>20h - TEAM 6 vs TEAM 8</li>
+                                            <li className={'font-weight-bold'} style={{textDecoration: "line-through"}}>21h - TEAM 7 vs TEAM 5</li>
                                         </ul>
                                     </>
                                 },
@@ -181,7 +183,7 @@ const LichThiDau = () =>{
                                         <h5>22/06/2023</h5>
                                         <ul>
                                             <li className={'font-weight-bold'}>20h - TEAM 9 vs TEAM 12</li>
-                                            <li className={'font-weight-bold'}>21h - TEAM 10 vs TEAM 11</li>
+                                            <li className={'font-weight-bold'} style={{textDecoration: "line-through"}}>21h - TEAM 10 vs TEAM 11</li>
                                         </ul>
                                     </>
                                 }
