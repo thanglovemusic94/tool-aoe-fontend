@@ -133,6 +133,7 @@ const LichThiDau = () =>{
                                         <h5>19/06/2023</h5>
                                         <ul>
                                             <li className={'font-weight-bold'}>20h - TEAM 9 vs TEAM 11</li>
+                                            <li className={'font-weight-bold'}>20h30 - TEAM 2 vs TEAM 4</li>
                                             <li className={'font-weight-bold'}>21h - TEAM 10 vs TEAM 12</li>
                                             <li className={'font-weight-bold'}>21h - TEAM 7 vs TEAM 5</li>
                                         </ul>
