@@ -52,8 +52,8 @@ jobs:
         with:
           node-version: "16"
 
-      - name: Installing dependencies
-        run: npm install
+#       - name: Installing dependencies
+#         run: npm install
 
       - name: Building project
         run: CI=false npm run build
