@@ -115,7 +115,7 @@ const LichThiDau = () =>{
                                     children: <>
                                         <h5>17/06/2023</h5>
                                         <ul>
-                                            <li className={'font-weight-bold'}>20h - TEAM 1 vs TEAM 3 (4-0 - team 3 không thi đấu)</li>
+                                            <li className={'font-weight-bold'}>20h - TEAM 1 vs TEAM 3 (4-0 - team 3 có thành viên không thi đấu)</li>
                                         </ul>
                                     </>
                                 },
@@ -125,6 +125,7 @@ const LichThiDau = () =>{
                                         <h5>18/06/2023</h5>
                                         <ul>
                                             <li className={'font-weight-bold'} >20h - TEAM 7 vs TEAM 6 ( 4 - 0 )</li>
+                                            <li className={'font-weight-bold'} >20h - TEAM 2 vs TEAM 1 ( 4 - 0 : tiểu thiên vương bận đột xuất không báo)</li>
                                         </ul>
                                     </>
                                 },
@@ -133,10 +134,10 @@ const LichThiDau = () =>{
                                     children: <>
                                         <h5>19/06/2023</h5>
                                         <ul>
-                                            <li className={'font-weight-bold'}>20h - TEAM 9 vs TEAM 11</li>
-                                            <li className={'font-weight-bold'}>20h30 - TEAM 2 vs TEAM 4</li>
-                                            <li className={'font-weight-bold'}>21h - TEAM 10 vs TEAM 12</li>
-                                            <li className={'font-weight-bold'}>21h - TEAM 7 vs TEAM 5</li>
+                                            <li className={'font-weight-bold'}>20h - TEAM 9 vs TEAM 11 (0 - 4 - luân lợn có vấn đề, làm ảnh hưởng trận đấu)</li>
+                                            <li className={'font-weight-bold'}>20h30 - TEAM 2 vs TEAM 4 (0 - 4)</li>
+                                            <li className={'font-weight-bold'}>21h - TEAM 10 vs TEAM 12 (1 - 3)</li>
+                                            <li className={'font-weight-bold'}>21h - TEAM 7 vs TEAM 5 (4 - 0)</li>
                                         </ul>
                                     </>
                                 }
@@ -168,6 +169,7 @@ const LichThiDau = () =>{
                                         <h5>21/06/2023</h5>
                                         <ul>
                                             <li className={'font-weight-bold'}>21h - TEAM 5 vs TEAM 8</li>
+                                            <li className={'font-weight-bold'}>21h - TEAM 9 vs TEAM 10</li>
                                         </ul>
                                     </>
                                 },
@@ -177,10 +179,10 @@ const LichThiDau = () =>{
                                         <h5>22/06/2023</h5>
                                         <ul>
                                             <li className={'font-weight-bold'}>20h - TEAM 9 vs TEAM 12</li>
+                                            <li className={'font-weight-bold'}>20h - TEAM 5 vs TEAM 6</li>
                                         </ul>
                                     </>
                                 }
-
                             ]}
                         />
                     </div>
