@@ -13,24 +13,20 @@ const ChamDiem = () => {
     };
     const items = [
         {
-            key: 'THAO_TAC_TAY',
-            label: `TAO TÁC TAY`,
-            children: <ThaoTacTay type={key} />,
+            key: 'DI_QUAN',
+            label: `ĐI QUÂN`,
+            children: <ThaoTacTay type={key}/>,
         },
+        ,
         {
-            key: 'EP_DOI',
-            label: `ÉP ĐỜI`,
+            key: 'THU_NHA',
+            label: `THỦ NHÀ`,
             children: <ThaoTacTay type={key}/>,
         },
         {
             key: 'PHAT_TRIEN',
             label: `PHÁT TRIỂN`,
             children: <ThaoTacTay type={key} />,
-        },
-        {
-            key: 'THU_NHA',
-            label: `THỦ NHÀ`,
-            children: <ThaoTacTay type={key}/>,
         },
         {
             key: 'CHIEN_THUAT',
@@ -43,8 +39,13 @@ const ChamDiem = () => {
             children: <ThaoTacTay type={key} />,
         },
         {
-            key: 'DI_QUAN',
-            label: `ĐI QUÂN`,
+            key: 'THAO_TAC_TAY',
+            label: `TAO TÁC TAY`,
+            children: <ThaoTacTay type={key} />,
+        },
+        {
+            key: 'EP_DOI',
+            label: `ÉP ĐỜI`,
             children: <ThaoTacTay type={key}/>,
         }
     ];
