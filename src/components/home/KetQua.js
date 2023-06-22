@@ -129,7 +129,7 @@ const KetQua = () =>{
             thang: 0,
             hoa: 0,
             thua: 1+1+1,
-            st: 0+1,
+            st: 0+1+1,
             stt: 4+3+3,
             dd: 1+1+1,
         },
